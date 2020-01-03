@@ -1,6 +1,6 @@
 package org.autom5;
 
-public enum ENnavigateur {
+public enum ENavigateur {
 	firefox, chrome, ie;
 
 }
