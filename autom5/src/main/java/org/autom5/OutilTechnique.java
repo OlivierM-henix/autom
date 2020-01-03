@@ -11,12 +11,12 @@ public class OutilTechnique {
 	static WebDriver choisirNavigateur(ENnavigateur nav) {
 		switch (nav) {
 		case firefox:
-			System.setProperty("webdriver.gecko.driver", "src/test/resources/driver/geckodriver.exe");
+			System.setProperty("webdriver.gecko.driver", "src/drivers/geckodriver-v0.24.0-win64/geckodriver.exe");
 			driver = new FirefoxDriver();
 			return driver;
 
 		case chrome:
-			System.setProperty("webdriver.chrome.driver", "src/test/resources/driver/chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", "src/drivers/chromedriver_win32/chromedriver.exe");
 			driver = new ChromeDriver();
 			return driver;
 		default:
