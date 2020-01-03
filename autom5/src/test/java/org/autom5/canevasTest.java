@@ -31,12 +31,11 @@ public class canevasTest extends PageAbstract{
 
 
 	@Test
-	public void test() throws InterruptedException {
+	public void test() {
 		//Accéder à l’application et se connecter en tant que admin/admin
 		driver.get("http://localhost:8090/libreplan/");	
 		PageCnx pageCnx = PageFactory.initElements(driver, PageCnx.class);
 		PageIndex pageIndex = pageCnx.sidentifier("admin", "admin", driver);
-		Thread.sleep(5000);
 
 		//Vérifier la bonne connexion
 		assertTrue(pageIndex.btn_deconnexion.isEnabled());
@@ -48,6 +47,5 @@ public class canevasTest extends PageAbstract{
 		// Adapter les noms à votre page !!!
 		pageIndex.selectionnerMenu(driver, "Ressources", "Formulaires qualité");
 		PageFormulaireQualite pageFormulaireQualite = PageFactory.initElements(driver, PageFormulaireQualite.class);
-		Thread.sleep(5000);
 	}
 }
