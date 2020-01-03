@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class PageCreerCritere {
 	
-	@FindBy (xpath="//table[@id='lKcYh6-box']//td[@class='z-button-cm']")
+	@FindBy (xpath="//td[@class='z-button-cm'][text()='Enregistrer']")
 	public
 	WebElement btn_enregistrer;
 			
@@ -15,19 +15,19 @@ public class PageCreerCritere {
 	public
 	WebElement btn_sauvegarder_continuer;
 	
-		@FindBy (xpath="//span[@class='cancel-button global-action z-button']")
+	@FindBy (xpath="//span[@class='cancel-button global-action z-button']")
 	public
 	WebElement btn_annuler;	
 	
-	@FindBy (xpath="//li[@id='eVDP45']//span[text()=\"Modifier\"]")
+	@FindBy (xpath="//li[@class='z-tab z-tab-seld']//span[(text()='Modifier')]")
 	public
 	WebElement creer_critere_modifier;
 	
-	@FindBy (xpath="//input[@id='a35Xe5']")
+	@FindBy (xpath="//span[@class='z-label'][text()='Nom']/ancestor::tr//input[@class='z-textbox']")
 	public
 	WebElement champs_critere_nom;
 	
-	@FindBy (xpath="//textarea[@id='lKcYt5']")
+	@FindBy (xpath="//textarea[@class='z-textbox']") 
 	public
 	WebElement champs_critere_description;
 	
@@ -52,6 +52,5 @@ public class PageCreerCritere {
 		btn_sauvegarder_continuer.click();
 		return PageFactory.initElements(driver, PageCritere.class);
 	}
-	
 	
 }
