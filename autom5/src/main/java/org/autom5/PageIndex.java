@@ -1,7 +1,7 @@
 package org.autom5;
 
 
-public class PageIndex {
+public class PageIndex extends PageAbstract {
 
 }
 

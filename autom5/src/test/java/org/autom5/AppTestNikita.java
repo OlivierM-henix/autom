@@ -20,7 +20,9 @@ public class AppTestNikita extends TestCase {
     public void testApp() {
     	driver = OutilTechnique.choisirNavigateur(chrome);
 		driver.get("http://localhost:8091/libreplan");
-		PageIndex page_index = PageFactory.initElements(driver, pageClassToProxy);
-		OutilTechnique.selectionnerMenu(driver,"Ressources","Machines");
+		PageCnx page_cnx = PageFactory.initElements(driver, PageCnx.class);
+		
+		PageIndex page_ind = page_cnx.sidentifier("admin","admin",driver);
+		page_ind.selectionnerMenu(driver,"Ressources","Machines");
     }
 }
