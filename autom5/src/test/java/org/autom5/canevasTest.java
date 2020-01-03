@@ -18,13 +18,11 @@ public class canevasTest extends PageAbstract{
 
 	WebDriver driver;
 
-
 	@Before
 	public void initialisations() throws InterruptedException {
 		driver = OutilTechnique.choisirNavigateur(ENavigateur.chrome);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
-
 
 	@After
 	public void fermerNavigateur () {
@@ -33,21 +31,21 @@ public class canevasTest extends PageAbstract{
 
 
 	@Test
-	public void test() throws InterruptedException {
+	public void test() {
 		//Accéder à l’application et se connecter en tant que admin/admin
 		driver.get("http://localhost:8090/libreplan/");	
 		PageCnx pageCnx = PageFactory.initElements(driver, PageCnx.class);
 		PageIndex pageIndex = pageCnx.sidentifier("admin", "admin", driver);
-		Thread.sleep(5000);
 
 		//Vérifier la bonne connexion
 		assertTrue(pageIndex.btn_deconnexion.isEnabled());
+		assertTrue(pageIndex.btn_calendrier.isEnabled());
 		assertEquals(pageIndex.txt_utilisateurConnecte.getText(),"utilisateur: admin");
+		
 
 		// Se rendre sur la page à tester l'aide de la méthode selectionnerMenu de la PageAbstract: exemple avec Ressources / Formulaires Qualité
 		// Adapter les noms à votre page !!!
 		pageIndex.selectionnerMenu(driver, "Ressources", "Formulaires qualité");
 		PageFormulaireQualite pageFormulaireQualite = PageFactory.initElements(driver, PageFormulaireQualite.class);
-		Thread.sleep(5000);
 	}
 }

@@ -16,6 +16,9 @@ public abstract class PageAbstract {
 	
 	@FindBy(xpath="//td[@class=\"usuario\"][2]")
 	WebElement txt_utilisateurConnecte;
+	
+	@FindBy(xpath="//button[contains(.,\"Calendrier\")]")
+	WebElement btn_calendrier;
 
 	
 	public void selectionnerMenu(WebDriver driver, String ogl,String btn) {
