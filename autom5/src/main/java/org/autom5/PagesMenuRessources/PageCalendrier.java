@@ -1,4 +1,4 @@
-package org.autom5;
+package org.autom5.PagesMenuRessources;
 
 public class PageCalendrier {
 
