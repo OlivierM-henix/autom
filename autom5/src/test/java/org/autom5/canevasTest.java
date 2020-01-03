@@ -18,13 +18,11 @@ public class canevasTest extends PageAbstract{
 
 	WebDriver driver;
 
-
 	@Before
 	public void initialisations() throws InterruptedException {
 		driver = OutilTechnique.choisirNavigateur(ENavigateur.chrome);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
-
 
 	@After
 	public void fermerNavigateur () {
