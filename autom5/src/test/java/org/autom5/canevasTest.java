@@ -9,11 +9,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class canevasTest extends PageAbstract{
 
 	WebDriver driver;
+	
 
 	@Before
 	public void initialisations() throws InterruptedException {
@@ -27,7 +30,8 @@ public class canevasTest extends PageAbstract{
 		Thread.sleep(5000);
 		
 		//Vérifier la bonne connexion
-//		assertTrue(btn_deconnexion.isDisplayed());
+		assertTrue(pageIndex.btn_deconnexion.isEnabled());
+		assertEquals(pageIndex.txt_utilisateurConnecte.getText(),"utilisateur: admin");
 	}
 
 
@@ -38,6 +42,7 @@ public class canevasTest extends PageAbstract{
 
 
 	@Test
-	public void test() throws InterruptedException {
-	}
+	public void test() {
+		// Se rendre sur la page à l'aide de la méthode selectionnerMenu
+		PageFormulaireQualite pageFormulaireQualite = pageIndex.selectionnerMenu(driver, "Ressources", "Formulaires qualité");
 }

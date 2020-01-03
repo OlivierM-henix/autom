@@ -10,6 +10,9 @@ public abstract class PageAbstract {
 	
 	@FindBy(xpath="//a[text()=\"[Déconnexion]\"]")
 	WebElement btn_deconnexion;
+	
+	@FindBy(xpath="//td[@class=\"usuario\"][2]")
+	WebElement txt_utilisateurConnecte;
 
 	
 	public static void selectionnerMenu(WebDriver driver, String ogl,String btn) {
