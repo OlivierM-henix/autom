@@ -1,8 +1,14 @@
 package org.autom5;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+import org.projet_selenium.Outils;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+
+import org.autom5.*;
 
 /**
  * Unit test for simple App.
@@ -10,7 +16,8 @@ import junit.framework.TestSuite;
 public class AppTestNikita 
     extends TestCase
 {
-    /**
+
+	/**
      * Create the test case
      *
      * @param testName name of the test case
@@ -30,9 +37,12 @@ public class AppTestNikita
 
     /**
      * Rigourous Test :-)
+     * @param  
      */
-    public void testApp()
-    {
-        assertTrue( true );
+    public void testApp() {
+    	driver = OutilTechnique.choisirNavigateur(chrome);
+		driver.get("http://localhost:8091/libreplan");
+		PageIndex page_index = PageFactory.initElements(driver, pageClassToProxy)
+		OutilTechnique.selectionnerMenu(driver,"Ressources","Machines");
     }
 }
