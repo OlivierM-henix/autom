@@ -14,7 +14,9 @@ public abstract class PageAbstract {
 	
 	public static void selectionnerMenu(WebDriver driver, String ogl,String btn) {
 		Actions action = new Actions (driver);
-        action.moveToElement(driver.findElement(By.xpath("//button[@class='z-menu-btn'][contains(text(),"+ogl+"]"))).build().perform();
+        action.moveToElement(driver.findElement(By.xpath("//button[@class='z-menu-btn'][contains(text(), '" + ogl + "']"))).build().perform();
 		driver.findElement(By.xpath("//button[@class='z-menu-item-cnt'][contains(text(),"+btn+"]")).click();
 	} // PAR EXEMPLE : selectionnerMenu(driver,"Ressources","Machines");
 }
+
+
