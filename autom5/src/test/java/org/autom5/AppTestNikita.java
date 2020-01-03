@@ -22,7 +22,7 @@ public class AppTestNikita extends TestCase {
 		driver.get("http://localhost:8091/libreplan");
 		PageCnx page_cnx = PageFactory.initElements(driver, PageCnx.class);
 		
-		PageIndex page_ind = page_cnx.sidentifier();
+		PageIndex page_ind = page_cnx.sidentifier("admin","admin",driver);
 		page_ind.selectionnerMenu(driver,"Ressources","Machines");
     }
 }
