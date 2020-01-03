@@ -13,19 +13,22 @@ public class CRI_01_Creation {
 
 	//Before choix du navigateur 
 	
+	
 	@Test
 	public void test() {
 		
 		
 		//choix du navigateur		
+		driver = OutilTechnique.choisirNavigateur(ENavigateur.firefox);
 		driver.get("http://localhost:8090/libreplan");
 		//Inserer Methode de connexion à la page index
 		
 		
 		//Inserer Methode de selection du menu : selectionnerMenu(driver,"Ressources","Criteres");
-		
-		
 		//PageCritere PageCritere = PageFactory.initElements(driver, PageCritere.class);
+		
+		//Capture d'écran
+		
 		//assertEquals("Nom", PageCritere.critere_nom.getText());
 		//assertEquals("Nom", PageCritere.critere_code.getText());
 		//assertEquals("Nom", PageCritere.critere_type.getText());
@@ -33,7 +36,12 @@ public class CRI_01_Creation {
 		//assertEquals("Nom", PageCritere.critere_operations.getText());
 		//assertTrue(PageCritere.btn_creer.isEnabled());
 		//driver.PageCritere.btn_creer.click();
-				
+		
+		//Capture d'écran
+		
+		
+		
+						
 	}
 
 }
