@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.concurrent.TimeUnit;
 
+import org.autom5.PagesMenuRessources.PageFormulaireQualite;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,22 +17,12 @@ import org.openqa.selenium.support.PageFactory;
 public class canevasTest extends PageAbstract{
 
 	WebDriver driver;
-	
+
 
 	@Before
 	public void initialisations() throws InterruptedException {
 		driver = OutilTechnique.choisirNavigateur(ENavigateur.chrome);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-
-		//Accéder à l’application et se connecter en tant que admin/admin
-		driver.get("http://localhost:8090/libreplan/");	
-		PageCnx pageCnx = PageFactory.initElements(driver, PageCnx.class);
-		PageIndex pageIndex = pageCnx.sidentifier("admin", "admin", driver);
-		Thread.sleep(5000);
-		
-		//Vérifier la bonne connexion
-		assertTrue(pageIndex.btn_deconnexion.isEnabled());
-		assertEquals(pageIndex.txt_utilisateurConnecte.getText(),"utilisateur: admin");
 	}
 
 
@@ -42,7 +33,21 @@ public class canevasTest extends PageAbstract{
 
 
 	@Test
-	public void test() {
-		// Se rendre sur la page à l'aide de la méthode selectionnerMenu
-		PageFormulaireQualite pageFormulaireQualite = pageIndex.selectionnerMenu(driver, "Ressources", "Formulaires qualité");
+	public void test() throws InterruptedException {
+		//Accéder à l’application et se connecter en tant que admin/admin
+		driver.get("http://localhost:8090/libreplan/");	
+		PageCnx pageCnx = PageFactory.initElements(driver, PageCnx.class);
+		PageIndex pageIndex = pageCnx.sidentifier("admin", "admin", driver);
+		Thread.sleep(5000);
+
+		//Vérifier la bonne connexion
+		assertTrue(pageIndex.btn_deconnexion.isEnabled());
+		assertEquals(pageIndex.txt_utilisateurConnecte.getText(),"utilisateur: admin");
+
+		// Se rendre sur la page à tester l'aide de la méthode selectionnerMenu de la PageAbstract: exemple avec Ressources / Formulaires Qualité
+		// Adapter les noms à votre page !!!
+		pageIndex.selectionnerMenu(driver, "Ressources", "Formulaires qualité");
+		PageFormulaireQualite pageFormulaireQualite = PageFactory.initElements(driver, PageFormulaireQualite.class);
+		Thread.sleep(5000);
+	}
 }
