@@ -6,7 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class OutilTechnique {
 
-	static WebDriver driver;
+	public static WebDriver driver;
 
 	static WebDriver choisirNavigateur(ENnavigateur nav) {
 		switch (nav) {
