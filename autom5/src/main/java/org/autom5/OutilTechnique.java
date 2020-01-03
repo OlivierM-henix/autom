@@ -8,14 +8,14 @@ public class OutilTechnique {
 
 	public static WebDriver driver;
 
-	static WebDriver choisirNavigateur(ENavigateur nav) {
+	static WebDriver choisirNavigateur(int nav) {
 		switch (nav) {
-		case firefox:
+		case 1:
 			System.setProperty("webdriver.gecko.driver", "src/drivers/geckodriver-v0.24.0-win64/geckodriver.exe");
 			driver = new FirefoxDriver();
 			return driver;
 
-		case chrome:
+		case 2:
 			System.setProperty("webdriver.chrome.driver", "src/drivers/chromedriver_win32/chromedriver.exe");
 			driver = new ChromeDriver();
 			return driver;
