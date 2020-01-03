@@ -71,7 +71,10 @@ public class CRI_01_Creation {
 		assertTrue("Critère - Test bouton [Enregistrer]", true);
 		
 		//Capture d'écran - Retour PageCritere : vérifier qu'aucune modification du tableau n'a été prise en compte
-		
+		PageCreerCritere = PageCritere.clicBtnCreer(driver);
+		OutilTechnique.remplirChampTexte(PageCreerCritere.champs_critere_nom, "Test bouton [Sauver et continuer]");
+		OutilTechnique.remplirChampTexte(PageCreerCritere.champs_critere_description, "Test bouton [Sauver et continuer]");
+		PageCreerCritere.clicBtnSauvegarderContinuer(driver);
 		
 		
 				

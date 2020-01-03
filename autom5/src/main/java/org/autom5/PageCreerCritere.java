@@ -25,16 +25,24 @@ public class PageCreerCritere {
 	@FindBy (xpath="//textarea[@id='lKcYt5']")
 	WebElement champs_critere_description;
 	
+	// On constate que le code xml est différent pour 2 champs tetes de même nature : textarea et input
+	
 	@FindBy (xpath="//td[(text()='PARTICIPANT')]/ancestor::i/descendant::input']")
 	WebElement type_creer_critere;
-
+	
+	
 	public PageCritere clicBtnAnnuler(WebDriver driver) {
 		btn_annuler.click();
 		return PageFactory.initElements(driver, PageCritere.class);
 	}
 	
 	public PageCritere clicBtnEnregistrer(WebDriver driver) {
-		btn_annuler.click();
+		btn_enregistrer.click();
+		return PageFactory.initElements(driver, PageCritere.class);
+	}
+	
+	public PageCritere clicBtnSauvegarderContinuer(WebDriver driver) {
+		btn_sauvegarder_continuer.click();
 		return PageFactory.initElements(driver, PageCritere.class);
 	}
 	
