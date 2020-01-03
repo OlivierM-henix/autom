@@ -8,6 +8,9 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.autom5.PageAbstract;
+
+import java.util.concurrent.TimeUnit;
+
 import org.autom5.OutilTechnique;
 
 
@@ -17,12 +20,13 @@ import org.autom5.OutilTechnique;
 public class AppTestNikita extends TestCase {
 	WebDriver driver;
 	ENavigateur chrome;
-    public void testApp() {
-    	driver = OutilTechnique.choisirNavigateur(chrome);
+    public void testApp(){
+    	driver = OutilTechnique.choisirNavigateur(2);
 		driver.get("http://localhost:8091/libreplan");
 		PageCnx page_cnx = PageFactory.initElements(driver, PageCnx.class);
 		
 		PageIndex page_ind = page_cnx.sidentifier("admin","admin",driver);
+		
 		page_ind.selectionnerMenu(driver,"Ressources","Machines");
     }
 }
