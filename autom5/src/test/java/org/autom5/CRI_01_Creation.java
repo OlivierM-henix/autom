@@ -49,10 +49,9 @@ public class CRI_01_Creation {
 		// Adapter les noms à votre page !!!
 		pageIndex.selectionnerMenu(driver, "Ressources", "Formulaires qualité");
 		PageFormulaireQualite pageFormulaireQualite = PageFactory.initElements(driver, PageFormulaireQualite.class);
-		Thread.sleep(5000);	
 		
-		PageAbstract.selectionnerMenu(driver,"Ressources","Criteres");
 		
+		// Initialisation de la PageCritere : verification des champs dans le tableau et clic sur le bouton "Continuer"
 		PageCritere PageCritere = PageFactory.initElements(driver, PageCritere.class);
 		assertEquals("Nom", PageCritere.critere_nom.getText());
 		assertEquals("Code", PageCritere.critere_code.getText());
