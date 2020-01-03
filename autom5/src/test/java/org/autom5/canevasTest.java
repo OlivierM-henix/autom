@@ -11,12 +11,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-public class canevasTest{
+public class canevasTest extends PageAbstract{
 
 	WebDriver driver;
 
 	@Before
-	public void initialisations() {
+	public void initialisations() throws InterruptedException {
 		driver = OutilTechnique.choisirNavigateur(ENavigateur.chrome);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
@@ -24,9 +24,10 @@ public class canevasTest{
 		driver.get("http://localhost:8090/libreplan/");	
 		PageCnx pageCnx = PageFactory.initElements(driver, PageCnx.class);
 		PageIndex pageIndex = pageCnx.sidentifier("admin", "admin", driver);
+		Thread.sleep(5000);
 		
 		//Vérifier la bonne connexion
-		assertTrue(btn_deconnexion.isDisplayed)
+//		assertTrue(btn_deconnexion.isDisplayed());
 	}
 
 
@@ -38,7 +39,5 @@ public class canevasTest{
 
 	@Test
 	public void test() throws InterruptedException {
-
-		Thread.sleep(2000);;
 	}
 }

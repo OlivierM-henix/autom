@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 public abstract class PageAbstract {
 	
-	@FindBy(xpath="//a[@href=\"/libreplan/j_spring_security_logout\"]")
+	@FindBy(xpath="//a[text()=\"[Déconnexion]\"]")
 	WebElement btn_deconnexion;
 
 	
