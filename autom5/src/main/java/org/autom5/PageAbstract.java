@@ -10,8 +10,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class PageAbstract {
 	
-	@FindBy(xpath="//a[@href=\"/libreplan/j_spring_security_logout\"]")
+	@FindBy(xpath="//a[text()=\"[Déconnexion]\"]")
 	WebElement btn_deconnexion;
+	
+	@FindBy(xpath="//td[@class=\"usuario\"][2]")
+	WebElement txt_utilisateurConnecte;
 
 	
 	public static void selectionnerMenu(WebDriver driver, String ogl,String btn) {
@@ -34,3 +37,5 @@ public abstract class PageAbstract {
         a.click();
 	} // PAR EXEMPLE : selectionnerMenu(driver,"Ressources","Machines");
 }
+
+
