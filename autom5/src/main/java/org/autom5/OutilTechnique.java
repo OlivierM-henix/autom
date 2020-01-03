@@ -8,7 +8,7 @@ public class OutilTechnique {
 
 	public static WebDriver driver;
 
-	static WebDriver choisirNavigateur(ENnavigateur nav) {
+	static WebDriver choisirNavigateur(ENavigateur nav) {
 		switch (nav) {
 		case firefox:
 			System.setProperty("webdriver.gecko.driver", "src/drivers/geckodriver-v0.24.0-win64/geckodriver.exe");
