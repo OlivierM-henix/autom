@@ -16,11 +16,10 @@ public class AppTestNikita extends TestCase {
 	ENavigateur chrome;
 	public void testApp(){
     	driver = OutilTechnique.choisirNavigateur(ENavigateur.chrome);
-		driver.get("http://localhost:8091/libreplan");
+		driver.get("http://localhost:8080/libreplan");
 		PageCnx page_cnx = PageFactory.initElements(driver, PageCnx.class);
 		
 		PageIndex page_ind = page_cnx.sidentifier("admin","admin",driver);
-		page_ind.selectionnerMenu(driver,"Ressources","Types");
-		page_ind.selectionnerMenu(driver,"CoÃ»t","Feuille de temps");
+		page_ind.selectionnerMenu(driver,"Coût","Feuille de temps");
     }
 }
