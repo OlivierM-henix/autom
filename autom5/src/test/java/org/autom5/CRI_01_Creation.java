@@ -83,7 +83,7 @@ public class CRI_01_Creation {
 		OutilTechnique.remplirChampTexte(PageCreerCritere.champs_critere_description, "Critère - Test bouton [Enregistrer]");
 		PageCritere = PageCreerCritere.clicBtnEnregistrer(driver);
 		assertTrue("Critère - Test bouton [Enregistrer]", true);
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		
 		//Capture d'écran - Retour PageCritere : vérifier qu'aucune modification du tableau n'a été prise en compte
 		PageCreerCritere = PageCritere.clicBtnCreer(driver);
