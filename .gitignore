@@ -1,3 +1,6 @@
 
 autom5/.classpath
 autom5/.settings/org.eclipse.jdt.core.prefs
+*.prefs
+autom5/.settings/org.eclipse.jdt.core.prefs
+autom5/.classpath

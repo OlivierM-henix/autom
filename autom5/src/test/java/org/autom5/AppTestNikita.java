@@ -20,6 +20,6 @@ public class AppTestNikita extends TestCase {
 		PageCnx page_cnx = PageFactory.initElements(driver, PageCnx.class);
 		
 		PageIndex page_ind = page_cnx.sidentifier("admin","admin",driver);
-		page_ind.selectionnerMenu(driver,"Coût","Feuille de temps");
+		page_ind.selectionnerMenu(driver,"Ressources","Types d'avancement");
     }
 }

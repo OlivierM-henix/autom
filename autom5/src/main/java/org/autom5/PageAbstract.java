@@ -39,7 +39,7 @@ public abstract class PageAbstract {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        WebElement a = driver.findElement(By.xpath("//a[@class='z-menu-item-cnt'][contains(text(),'"+btn+"')]"));
+        WebElement a = driver.findElement(By.xpath("//a[@class='z-menu-item-cnt'][.=\" "+btn+"\"]"));
         System.out.println("Je clique sur : "+a);
         a.click();
         
