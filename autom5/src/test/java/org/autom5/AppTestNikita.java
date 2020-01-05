@@ -16,11 +16,14 @@ public class AppTestNikita extends TestCase {
 	ENavigateur chrome;
 	public void testApp(){
     	driver = OutilTechnique.choisirNavigateur(ENavigateur.chrome);
+<<<<<<< HEAD
 		driver.get("http://localhost:8081/libreplan");
+=======
+		driver.get("http://localhost:8080/libreplan");
+>>>>>>> aa89ffcb649aaee4687c321a80970fc58b0c2022
 		PageCnx page_cnx = PageFactory.initElements(driver, PageCnx.class);
 		
 		PageIndex page_ind = page_cnx.sidentifier("admin","admin",driver);
-		page_ind.selectionnerMenu(driver,"Ressources","Types");
-		page_ind.selectionnerMenu(driver,"Coût","Feuille de temps");
+		page_ind.selectionnerMenu(driver,"Ressources","Types d'avancement");
     }
 }
