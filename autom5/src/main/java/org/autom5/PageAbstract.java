@@ -42,7 +42,7 @@ public abstract class PageAbstract {
 		WebElement b = driver.findElement(By.xpath("//button[@class='z-menu-btn'][contains(text(),'Ressources')]/../../../../.."));
 
 		action.moveToElement(b).build().perform();
-		System.out.println("Je hover sur : "+b);
+		System.out.println("sélection de l'onglet : "+b);
 		try {
 			Thread.sleep(200);
 		} catch (InterruptedException e) {
@@ -50,24 +50,12 @@ public abstract class PageAbstract {
 			e.printStackTrace();
 		}
 		WebElement a = driver.findElement(By.xpath("//a[@class='z-menu-item-cnt'][contains(text(),'"+btn+"')]"));
-		System.out.println("Je clique sur : "+a);
+		System.out.println("sélection du sous-menu : "+a);
 		a.click();
 
 		//        return PageFactory.initElements(driver, PageAbstract.class);
 	} // PAR EXEMPLE : selectionnerMenu(driver,"Ressources","Machines");
-
-
-	public static void captureEcran(WebDriver webdriver,String fileWithPath) throws Exception{
-		TakesScreenshot scrShot =((TakesScreenshot)webdriver);
-		File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
-		File DestFile=new File(fileWithPath);
-		FileUtils.copyFile(SrcFile, DestFile);	 	
-		
-		
-		//Il faut Ajouter une incrémentation pour le numero des capture d'écran + 
-		//repertoire de stockage à ajouter dans la classe test, par exemple : PageAbstract.captureEcran(driver, "c:/TEST/test.png") ; ;
-		
-	}
+	
 	
 	public static void screenShot(WebDriver driver, String nom_capture) throws IOException, InterruptedException {
 	    File scr = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
@@ -81,8 +69,8 @@ public abstract class PageAbstract {
 	} 
 	
 	//Verifier le chemin du dossier de stockage
-	//nommer la capture en fonction de son test ex: "CRI_01_connexion" 
-	//commande PageAbstract.screenShot(driver, "CRI_01_connexion")
+	//nommer la capture en fonction de son cas de test + fonctionnalité ex: "CRI_01_connexion" 
+	//commande PageAbstract.screenShot(driver, "CRI_01_connexion");
 	//ex nommage attendu : CRI_01_connexion - 2019-05-01 : 18:54:08)
 
 
