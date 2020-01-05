@@ -16,7 +16,7 @@ public class AppTestNikita extends TestCase {
 	ENavigateur chrome;
 	public void testApp(){
     	driver = OutilTechnique.choisirNavigateur(ENavigateur.chrome);
-		driver.get("http://localhost:8091/libreplan");
+		driver.get("http://localhost:8081/libreplan");
 		PageCnx page_cnx = PageFactory.initElements(driver, PageCnx.class);
 		
 		PageIndex page_ind = page_cnx.sidentifier("admin","admin",driver);
