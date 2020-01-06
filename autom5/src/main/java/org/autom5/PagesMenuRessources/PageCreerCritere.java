@@ -31,6 +31,13 @@ public class PageCreerCritere {
 	public
 	WebElement champs_critere_description;
 	
+	@FindBy (xpath="//div[@class='message_INFO']//span[(text()='Test bouton [Sauver et continuer] enregistré')]") 
+	public
+	WebElement critere_message_sauvegarde;
+	
+	
+	
+	
 	// On constate que le code xml est différent pour 2 champs tetes de même nature : textarea et input
 	
 	@FindBy (xpath="//td[(text()='PARTICIPANT')]/ancestor::i/descendant::input']")
