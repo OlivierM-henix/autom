@@ -20,7 +20,8 @@ public class AVA_01_CreerTypeAvancement extends TestCase {
 		PageCnx pge = PageFactory.initElements(driver, PageCnx.class);
 		pge.sidentifier("admin","admin",driver);
 		
-		PageAbstract.selectionnerMenu(driver,"Ressources","Types d'avancement");
+		PageIndex pgi = PageFactory.initElements(driver, PageIndex.class);
+		pgi.selectionnerMenu(driver,"Ressources","Types d'avancement");
 		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 		driver.findElement(By.xpath("//td[@class='z-button-cm'][.='Créer']/../../..")).click();
 		

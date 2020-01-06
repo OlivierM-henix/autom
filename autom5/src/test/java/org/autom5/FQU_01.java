@@ -72,8 +72,36 @@ public class FQU_01 extends PageAbstract{
 		Select select = new Select(pageEditerFormulaire.select_type);
 		assertFalse(select.isMultiple());
 		assertTrue(select.getFirstSelectedOption().getText().equals("par pourcentage"));
-//		assertTrue(pageEditerFormulaire.checkbox_avancement.getAttribute("value").equals("0"));
+		assertFalse(pageEditerFormulaire.checkbox_avancement.isSelected());
+		assertTrue(pageEditerFormulaire.btn_nvelement.isEnabled());
+		assertTrue(pageEditerFormulaire.cln_nom.getText().equals("Nom"));
+		assertTrue(pageEditerFormulaire.cln_position.getText().equals("Position"));
+		assertTrue(pageEditerFormulaire.cln_operations.getText().equals("Opérations"));
+		assertTrue(OutilTechnique.obtenir_lgn_i(driver, "//div[@class=\"z-panel-body\"]//div[@class=\"z-grid-body\"]", 1).getText().isEmpty());
+		assertTrue(pageEditerFormulaire.btn_enregistrer.isEnabled());
+		assertTrue(pageEditerFormulaire.btn_sauver_continuer.isEnabled());
+		assertTrue(pageEditerFormulaire.btn_annuler.isEnabled());
+	
+		//PAS 4
+		OutilTechnique.remplirChampTexte(pageEditerFormulaire.champ_nom, "Formulaire Test 1");
+		OutilTechnique.remplirChampTexte(pageEditerFormulaire.champ_description, "Formulaire Test 1");
+		pageEditerFormulaire.checkbox_avancement.click();
+		assertTrue(select.getFirstSelectedOption().getText().equals("par pourcentage"));
+		assertTrue(pageEditerFormulaire.checkbox_avancement.isSelected());
+		pageEditerFormulaire.btn_nvelement.click();
+		String xpath_tableau_formulaire =  "//div[@class=\"z-panel-body\"]//div[@class=\"z-grid-body\"]";
+		assertTrue(OutilTechnique.obtenir_cellule_i_j(driver, xpath_tableau_formulaire, 1,1).getText().isEmpty());
+		assertTrue(OutilTechnique.obtenir_cellule_i_j(driver, xpath_tableau_formulaire, 1,2).getText().equals("1"));
+		assertTrue(OutilTechnique.obtenir_cellule_i_j(driver, xpath_tableau_formulaire, 1,3).getText().isEmpty());
+		assertTrue(driver.findElement(By.xpath("//img[@src=\"/libreplan/common/img/ico_subir1.png\"]")).isEnabled());
 		
+		//PAS 5
+		OutilTechnique.remplirChampTexte(OutilTechnique.obtenir_champ_i_j(driver, xpath_tableau_formulaire, 1,1),"Formulaire - Element 2");
+		OutilTechnique.remplirChampTexte(OutilTechnique.obtenir_champ_i_j(driver, xpath_tableau_formulaire, 1,3),"40");
+		pageEditerFormulaire.btn_nvelement.click();
+		Thread.sleep(3000);
+		
+
 		
 		
 	}

@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.autom5.OutilTechnique;
 
-public class AppTestNikita extends TestCase {
+public class GRE_03_CreerUtilisateurEchec extends TestCase {
 	WebDriver driver;
 	ENavigateur chrome;
 	public void testApp(){
@@ -21,24 +21,22 @@ public class AppTestNikita extends TestCase {
 		pge.sidentifier("admin","admin",driver);
 		
 		PageIndex pgi = PageFactory.initElements(driver, PageIndex.class);
-		pgi.selectionnerMenu(driver,"Ressources","Machines");
+		pgi.selectionnerMenu(driver,"Configuration","Comptes utilisateurs");
 		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 		driver.findElement(By.xpath("//td[@class='z-button-cm'][.='Créer']/../../..")).click();
 		
-		OutilTechnique.remplirChampTexte(driver.findElement(By.xpath("//span[@class='z-label'][.=\"Nom\"]/../../../td[2]/*/input")),"testAutomatisé");
-		OutilTechnique.remplirChampTexte(driver.findElement(By.xpath("//span[@class='z-label'][.=\"Description\"]/../../../td[2]/*/input")),"descriptionAutomatisée");
+		// Parfois, popup d'erreur ! z-button-cm
+//		driver.findElement(By.xpath("//td[@class='z-button-cm'][.='Continuer']")).click();
+//		driver.findElement(By.xpath("//td[@class='z-button-cm'][.='Créer']/../../..")).click();
+		
+		OutilTechnique.remplirChampTexte(driver.findElement(By.xpath("//span[@class='z-label'][.=\"Nom d'utilisateur\"]/../../../td[2]/*/input")),"admin");
+		OutilTechnique.remplirChampTexte(driver.findElement(By.xpath("//span[@class='z-label'][.=\"Mot de passe\"]/../../../td[2]/*/input")),"motdepasse");
+		OutilTechnique.remplirChampTexte(driver.findElement(By.xpath("//span[@class='z-label'][.=\"Confirmation du mot de passe\"]/../../../td[2]/*/input")),"motdepasse");
 		
 		driver.findElement(By.xpath("//td[@class='z-button-cm'][.='Enregistrer']/../../..")).click();
 		
 		// Faire toutes les vérif d'échec de création...
 		
-		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-		driver.findElement(By.xpath("//span[@class='z-label'][.='testAutomatisé']/../../../td[5]/*/*/*/*/*/*/*/*/*[3]/*/*/*/*[2]/*[2]/img")).click();
-		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-		driver.findElement(By.xpath("//td[@class='z-button-cm'][.='OK']")).click();
-		
-		// Faire toutes les vérifs de suppression...
-		try {Thread.sleep(200);} catch (InterruptedException e) {e.printStackTrace();}
 		driver.quit();
 	}
 }

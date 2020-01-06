@@ -25,12 +25,12 @@ public class PageEditerFormulaire {
 	public
 	WebElement lgn_avancement;
 
-	@FindBy(xpath="//div[@class=\"z-grid-body\"]//tr[1]/td[2]")
+	@FindBy(xpath="//div[@class=\"z-grid-body\"]//tr[1]/td[2]//input")
 	public
 	WebElement champ_nom;
 
 	@FindBy(xpath=""
-			+ "//div[@class=\"z-grid-body\"]//tr[2]/td[2]")
+			+ "//div[@class=\"z-grid-body\"]//tr[2]/td[2]//textarea")
 	public
 	WebElement champ_description;
 
@@ -54,7 +54,7 @@ public class PageEditerFormulaire {
 
 	@FindBy(xpath="//td[text()=\"Nouvel élément du formulaire qualité\"]")
 	public
-	WebElement btn_nvlelement;
+	WebElement btn_nvelement;
 
 	@FindBy(xpath="//div[@class=\"z-panel\"]//div[@class=\"z-grid\"]//tbody[2]//div[text()=\"Nom\"]")
 	public
@@ -77,7 +77,7 @@ public class PageEditerFormulaire {
 	public
 	WebElement btn_sauver_continuer;
 
-	@FindBy(xpath="Annuler")
+	@FindBy(xpath="//td[text()=\"Annuler\"]")
 	public
 	WebElement btn_annuler;
 }

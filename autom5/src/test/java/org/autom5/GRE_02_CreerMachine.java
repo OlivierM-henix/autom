@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.autom5.OutilTechnique;
 
-public class AppTestNikita extends TestCase {
+public class GRE_02_CreerMachine extends TestCase {
 	WebDriver driver;
 	ENavigateur chrome;
 	public void testApp(){
