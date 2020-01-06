@@ -28,19 +28,14 @@ public class AppTestNikita extends TestCase {
 //		driver.findElement(By.xpath("//td[@class='z-button-cm'][.='Continuer']")).click();
 //		driver.findElement(By.xpath("//td[@class='z-button-cm'][.='Créer']/../../..")).click();
 		
-		OutilTechnique.remplirChampTexte(driver.findElement(By.xpath("//span[@class='z-label'][.=\"Nom d'utilisateur\"]/../../../td[2]/*/input")),"testAutomatisé");
+		OutilTechnique.remplirChampTexte(driver.findElement(By.xpath("//span[@class='z-label'][.=\"Nom d'utilisateur\"]/../../../td[2]/*/input")),"admin");
 		OutilTechnique.remplirChampTexte(driver.findElement(By.xpath("//span[@class='z-label'][.=\"Mot de passe\"]/../../../td[2]/*/input")),"motdepasse");
 		OutilTechnique.remplirChampTexte(driver.findElement(By.xpath("//span[@class='z-label'][.=\"Confirmation du mot de passe\"]/../../../td[2]/*/input")),"motdepasse");
 		
 		driver.findElement(By.xpath("//td[@class='z-button-cm'][.='Enregistrer']/../../..")).click();
 		
-		// Faire toutes les vérif...
-
-		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-		driver.findElement(By.xpath("//span[@class='z-label'][.='testAutomatisé']/../../../td[6]/*/*/*/*/*/*/*/*/*[3]/*/*/*/*[2]/*[2]/img")).click();
-		driver.findElement(By.xpath("//td[@class='z-button-cm'][.='OK']")).click();
+		// Faire toutes les vérif d'échec de création...
 		
-		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 		driver.quit();
 	}
 }
