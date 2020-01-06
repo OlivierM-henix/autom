@@ -28,7 +28,7 @@ public abstract class PageAbstract {
 	WebElement btn_calendrier;
 
 
-	public static void selectionnerMenu(WebDriver driver, String ogl,String btn) {
+	public void selectionnerMenu(WebDriver driver, String ogl,String btn) {
 		Actions action = new Actions (driver);
 
 		try {
@@ -56,21 +56,43 @@ public abstract class PageAbstract {
 		try {Thread.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
 		
 		WebElement b = driver.findElement(By.xpath("//button[@class='z-menu-btn'][contains(text(),\""+ogl+"\")]/../../../../.."));
-		action.moveToElement(b).build().perform();
+		action.moveToElement(b).build().perform();		
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		WebElement a = driver.findElement(By.xpath("//a[@class='z-menu-item-cnt'][contains(text(),'"+btn+"')]"));		
 		System.out.println("selection de l'onglet : "+ogl);
 		
 		try {Thread.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
 		
-		WebElement a = driver.findElement(By.xpath("//a[@class='z-menu-item-cnt'][contains(text(),\""+btn+"\")]"));
+		WebElement c = driver.findElement(By.xpath("//a[@class='z-menu-item-cnt'][contains(text(),\""+btn+"\")]"));
 		System.out.println("selection du sous-menu : "+btn);
-		a.click();
+		c.click();
 
 		//        return PageFactory.initElements(driver, PageAbstract.class);
 
 	} // PAR EXEMPLE : selectionnerMenu(driver,"Ressources","Machines");
 	
 	
+	public static void screenShot(WebDriver driver, String nom_capture) throws IOException, InterruptedException {
+	    File scr = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+	    File dest = new File(".\\src\\test\\"+nom_capture+ "-" + timestamp() + ".png");
+	    FileUtils.copyFile(scr, dest);
+	    Thread.sleep(1000);
+	}
+
+	public static String timestamp() {
+	    return new SimpleDateFormat("yyyy-MM-dd : HH:mm:ss").format(new Date());
+	} 
 	
+	//Verifier le chemin du dossier de stockage
+	//nommer la capture en fonction de son cas de test + fonctionnalit� ex: "CRI_01_connexion" 
+	//commande PageAbstract.screenShot(driver, "CRI_01_connexion");
+	//ex nommage attendu : CRI_01_connexion - 2019-05-01 : 18:54:08)
+
 
 }
 

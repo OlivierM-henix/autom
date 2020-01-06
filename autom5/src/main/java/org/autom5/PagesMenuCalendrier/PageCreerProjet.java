@@ -21,8 +21,10 @@ public class PageCreerProjet {
 	
 	  //icône créer un projet
 	
+	
 
-	  
+	
+	
 	  
 	  //Popup qui s'affiche: créer un projet - Nom champ de saisie non renseigné
 	  //LABEL NOM
@@ -344,76 +346,9 @@ public class PageCreerProjet {
 				
 				 
 				 
-				 
-				//td[contains(text(),'Annuler')]
-				 
-				 
-				//span[contains(text(),'Client')]
-		  
-	  
-	//tr[@class='z-row z-grid-odd']//input[@class='z-datebox-inp']
-	  
+			
 	  
 	
-	<p>Affichage d'une pop-up "Créer un nouveau projet" contenant les éléments suivants :</p> 
-	<p> </p> 
-	<p>- Nom : Champ de saisie non renseigné</p> 
-	<p>- Modèle : Liste déroulante non renseignée</p> 
-	<p>- Code : Champ de saisie renseigné avec une valeur par défaut non modifiable et grisé. La case "Générer le code" associée à ce champ est cochée par défaut</p> 
-	<p>- Date de début : champ de saisie de date associé à un calendrier. Par défaut, la date affichée est la date du jour. Le format de la date correspond à l'exemple suivant : "25 janv. 2017"</p> 
-	<p>- Echéance : champ de saisie de date associé à un calendrier. Par défaut, le champ n'est pas renseigné.</p> 
-	<p>- Client : Champ de saisie non renseigné</p> 
-	<p>- Calendrier : Liste déroulante avec pour valeur par défaut "Default"</p> 
-	<p>- Boutons [Accepter] et [Annuler]</p> 
-
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*
-	 * @FindBy (xpath="//table[@id='lKcYh6-box']//td[@class='z-button-cm']") public
-	 * WebElement btn_enregistrer;
-	 * 
-	 * @FindBy
-	 * (xpath="//span[@class='saveandcontinue-button global-action z-button']")
-	 * public WebElement btn_sauvegarder_continuer;
-	 * 
-	 * @FindBy (xpath="//span[@class='cancel-button global-action z-button']")
-	 * public WebElement btn_annuler;
-	 * 
-	 * @FindBy (xpath="//li[@id='eVDP45']//span[text()=\"Modifier\"]") public
-	 * WebElement creer_critere_modifier;
-	 * 
-	 * @FindBy (xpath="//input[@id='a35Xe5']") public WebElement champs_critere_nom;
-	 * 
-	 * @FindBy (xpath="//textarea[@id='lKcYt5']") public WebElement
-	 * champs_critere_description;
-	 * 
-	 * // On constate que le code xml est diffÃ©rent pour 2 champs tetes de mÃªme
-	 * nature : textarea et input
-	 * 
-	 * @FindBy
-	 * (xpath="//td[(text()='PARTICIPANT')]/ancestor::i/descendant::input']") public
-	 * WebElement type_creer_critere;
-	 * 
-	 * 
-	 * public PageCritere clicBtnAnnuler(WebDriver driver) { btn_annuler.click();
-	 * return PageFactory.initElements(driver, PageCritere.class); }
-	 * 
-	 * public PageCritere clicBtnEnregistrer(WebDriver driver) {
-	 * btn_enregistrer.click(); return PageFactory.initElements(driver,
-	 * PageCritere.class); }
-	 * 
-	 * public PageCritere clicBtnSauvegarderContinuer(WebDriver driver) {
-	 * btn_sauvegarder_continuer.click(); return PageFactory.initElements(driver,
-	 * PageCritere.class); }
-	 */
 	
 }

@@ -31,9 +31,17 @@ public class PageCreerCritere {
 	public
 	WebElement champs_critere_description;
 	
-	@FindBy (xpath="//div[@class='message_INFO']//span[(text()='Test bouton [Sauver et continuer] enregistré')]") 
+	@FindBy (xpath="//div[@class='message_INFO']//span[(text()='Type de critère \"Test bouton [Sauver et continuer]\" enregistré')]") 
 	public
 	WebElement critere_message_sauvegarde;
+	
+	@FindBy (xpath="//table[@class='caption-title z-caption']//td[contains(text(), 'critère')]") 
+	public
+	WebElement critere_titre;
+	
+	
+	
+	
 	
 	
 	

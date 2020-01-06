@@ -21,7 +21,8 @@ public class GRE_01_CreerUtilisateur extends TestCase {
 		PageCnx pge = PageFactory.initElements(driver, PageCnx.class);
 		pge.sidentifier("admin","admin",driver);
 		
-		PageAbstract.selectionnerMenu(driver,"Configuration","Comptes utilisateurs");
+		PageIndex pgi = PageFactory.initElements(driver, PageIndex.class);
+		pgi.selectionnerMenu(driver,"Configuration","Comptes utilisateurs");
 		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 		driver.findElement(By.xpath("//td[@class='z-button-cm'][.='Créer']/../../..")).click();
 		
@@ -35,14 +36,16 @@ public class GRE_01_CreerUtilisateur extends TestCase {
 		
 		driver.findElement(By.xpath("//td[@class='z-button-cm'][.='Enregistrer']/../../..")).click();
 		
-		// Faire toutes les vérif...
+		// Faire toutes les vérif de création ...
 		OutilTechnique.screenShot(driver, "test");
 
 		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 		driver.findElement(By.xpath("//span[@class='z-label'][.='testAutomatisé']/../../../td[6]/*/*/*/*/*/*/*/*/*[3]/*/*/*/*[2]/*[2]/img")).click();
+		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 		driver.findElement(By.xpath("//td[@class='z-button-cm'][.='OK']")).click();
 		
-		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+		// Faire toutes les vérifs de suppression...
+		
 		driver.quit();
 	}
 }
