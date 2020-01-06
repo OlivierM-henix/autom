@@ -73,8 +73,11 @@ public class FQU_01 extends PageAbstract{
 		assertFalse(select.isMultiple());
 		assertTrue(select.getFirstSelectedOption().getText().equals("par pourcentage"));
 //		assertTrue(pageEditerFormulaire.checkbox_avancement.getAttribute("value").equals("0"));
-		
-		
+		assertTrue(pageEditerFormulaire.btn_nvelement.isEnabled());
+		assertTrue(pageEditerFormulaire.cln_nom.getText().equals("Nom"));
+		assertTrue(pageEditerFormulaire.cln_position.getText().equals("Position"));
+		assertTrue(pageEditerFormulaire.cln_operations.getText().equals("Opérations"));
+		assertTrue(OutilTechnique.obtenir_lgn_i(driver, "//div[@class=\"z-panel-body\"]//div[@class=\"z-grid-body\"]", 1).getText().isEmpty());
 		
 	}
 }

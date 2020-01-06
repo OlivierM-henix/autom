@@ -53,8 +53,8 @@ public class OutilTechnique {
 	    return new SimpleDateFormat("yyyy-MM-dds.HH.mm.ss").format(new Date());
 	} 
 	
-	public WebElement obtenir_lgn_i (WebDriver driver, String xpath_lignes_tableau, int i) {
-		WebElement lgn_i = driver.findElement(By.xpath(""+xpath_lignes_tableau+"["+i+"]"));
+	public static WebElement obtenir_lgn_i (WebDriver driver, String xpath_tableau, int i) {
+		WebElement lgn_i = driver.findElement(By.xpath(""+xpath_tableau+"//tr["+i+"]"));
 		return lgn_i;
 	}
 	//Verifier le chemin du dossier de stockage

@@ -54,7 +54,7 @@ public class PageEditerFormulaire {
 
 	@FindBy(xpath="//td[text()=\"Nouvel élément du formulaire qualité\"]")
 	public
-	WebElement btn_nvlelement;
+	WebElement btn_nvelement;
 
 	@FindBy(xpath="//div[@class=\"z-panel\"]//div[@class=\"z-grid\"]//tbody[2]//div[text()=\"Nom\"]")
 	public
