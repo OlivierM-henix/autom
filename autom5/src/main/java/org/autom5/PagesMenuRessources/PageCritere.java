@@ -1,6 +1,7 @@
 package org.autom5.PagesMenuRessources;
 
 import org.autom5.PageAbstract;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -42,22 +43,26 @@ public class PageCritere extends PageAbstract {
 	@FindBy (xpath="//div[@class='clickable-rows z-grid']//span[@title=\"Test bouton [Sauver et continuer]\"]") 
 	public
 	WebElement critere_selection_titre_tableau;
-	//il faut variabiliser les noms dans le tableau
 	
+		
 	@FindBy (xpath="//div[@class='clickable-rows z-grid']//span[@title=\"Test bouton [Sauver et continuer]\"]//ancestor::tr//span[@title='Supprimer']") 
 	public
 	WebElement critere_supression_titre_tableau;
 	
-	@FindBy (xpath="//div[@class=\"z-window-modal-cm\"]//td[@class='z-button-cm']")
+	@FindBy (xpath="//div[@class=\"z-window-modal-cm\"]//td[@class='z-button-cm'][text()='OK']")
 	public
 	WebElement critere_valider_supression;	
+	
+	@FindBy (xpath="//div[@class=\"z-window-modal-cm\"]//td[@class='z-button-cm'][text()='Annuler']")
+	public
+	WebElement critere_annuler_supression;	
 	
 	@FindBy (xpath="//div[@class='clickable-rows z-grid']//span[@title=\"Test bouton [Sauver et continuer]\"]//ancestor::tr//span[@title='Modifier']") 
 	public
 	WebElement critere_modification_titre_tableau;
 	
 	
-	
+	//methode verif disparation pop up en try and catch
 	
 	
 	
