@@ -89,21 +89,23 @@ public class FQU_01 extends PageAbstract{
 		assertTrue(select.getFirstSelectedOption().getText().equals("par pourcentage"));
 		assertTrue(pageEditerFormulaire.checkbox_avancement.isSelected());
 		pageEditerFormulaire.btn_nvelement.click();
-		String xpath_tableau_formulaire =  "//div[@class=\"z-panel-body\"]//div[@class=\"z-grid-body\"]";
+		String xpath_tableau_formulaire =  "//div[@class=\"z-panel-body\"]//div[@class=\"z-grid-body\"]/table";
 		assertTrue(OutilTechnique.obtenir_cellule_i_j(driver, xpath_tableau_formulaire, 1,1).getText().isEmpty());
 		assertTrue(OutilTechnique.obtenir_cellule_i_j(driver, xpath_tableau_formulaire, 1,2).getText().equals("1"));
 		assertTrue(OutilTechnique.obtenir_cellule_i_j(driver, xpath_tableau_formulaire, 1,3).getText().isEmpty());
 		assertTrue(driver.findElement(By.xpath("//img[@src=\"/libreplan/common/img/ico_subir1.png\"]")).isEnabled());
 		
 		//PAS 5
-		Thread.sleep(3000);
-		OutilTechnique.remplirChampTexte(OutilTechnique.obtenir_cellule_i_j(driver, xpath_tableau_formulaire, 1,1),"Formulaire - Element 2");
-		OutilTechnique.remplirChampTexte(OutilTechnique.obtenir_cellule_i_j(driver, xpath_tableau_formulaire, 1,3),"40");
+		OutilTechnique.remplirChampTexte(OutilTechnique.obtenir_champ_i_j(driver, xpath_tableau_formulaire, 1,1),"Formulaire - Element 2");
+		OutilTechnique.remplirChampTexte(OutilTechnique.obtenir_champ_i_j(driver, xpath_tableau_formulaire, 1,3),"40");
 		pageEditerFormulaire.btn_nvelement.click();
 		Thread.sleep(3000);
 		
-
+		assertTrue(OutilTechnique.obtenir_cellule_i_j(driver, xpath_tableau_formulaire, 1,2).getText().equals("1"));
+		assertTrue(OutilTechnique.obtenir_cellule_i_j(driver, xpath_tableau_formulaire, 2,2).getText().equals("2"));
+		assertTrue(OutilTechnique.obtenir_champ_i_j(driver, xpath_tableau_formulaire, 2,3).getAttribute("value").equals("40,00"));
 		
+	
 		
 	}
 }
