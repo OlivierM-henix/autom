@@ -1,13 +1,33 @@
 package org.autom5;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;  // main one
+import static org.assertj.core.api.Assertions.atIndex; // for List assertions
+import static org.assertj.core.api.Assertions.entry;  // for Map assertions
+import static org.assertj.core.api.Assertions.tuple; // when extracting several properties at once
+import static org.assertj.core.api.Assertions.fail; // use when writing exception tests
+import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown; // idem
+import static org.assertj.core.api.Assertions.filter; // for Iterable/Array assertions
+import static org.assertj.core.api.Assertions.offset; // for floating number assertions
+import static org.assertj.core.api.Assertions.anyOf; // use with Condition
+import static org.assertj.core.api.Assertions.contentOf; // use with File assertions
 
+
+import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.*;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import org.autom5.PagesMenuCalendrier.PageCreerProjet;
 import org.autom5.PagesMenuRessources.PageCreerCritere;
 import org.autom5.PagesMenuRessources.PageCritere;
-import org.autom5.PagesMenuRessources.PageFormulaireQualite;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -15,6 +35,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 public class PRO_01_Creation {
+	
+	
 	
 	WebDriver driver;
 	
@@ -24,7 +46,6 @@ public class PRO_01_Creation {
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
 
-
 	//@After
 	//public void fermerNavigateur () {
 	//	driver.quit();
@@ -32,7 +53,7 @@ public class PRO_01_Creation {
 	
 
 	/**
-	 * @throws InterruptedException
+	// *@throws InterruptedException
 	 */
 	@Test
 	public void test() throws InterruptedException {
@@ -54,28 +75,126 @@ public class PRO_01_Creation {
 		//PageFormulaireQualite pageFormulaireQualite = PageFactory.initElements(driver, PageFormulaireQualite.class);
 		
 		
-		//Accéder au formulaire de création d'un projet
-		//Cliquer sur l'icône "Créer un nouveau projet" (1ère icône "+" située en dessous du logo "LibrePlan")
+		
+		
+		
+				PageIndex pageindex = PageFactory.initElements(driver, PageIndex.class);
+				
+				//Accéder au formulaire de création d'un projet
+				//Cliquer sur l'icône "Créer un nouveau projet" (1ère icône "+" située en dessous du logo "LibrePlan")
+				driver.findElement(By.xpath("//span[@class='planner-icon z-button']//img")).click();
+				
+				PageCreerProjet PageCreerProjet = PageFactory.initElements(driver, PageCreerProjet.class);
+				
+				//le champ "nom" présent
+				assertEquals("Nom", PageCreerProjet.label_nomprojet.getText());
+				// log 		
+				
+				//le champ "nom" du projet est vide par défaut
+				assertEquals("", PageCreerProjet.input_nomprojet.getText());
+				// log 			
+				
+				//le champ "modele" est présent
+				assertEquals("Modele", PageCreerProjet.label_modeleprojet.getText());	
+				// log 
+				
+				
+				// log le champ "modele" est vide par défaut 
+				assertThat(PageCreerProjet.input_modeleprojet.getText().isEmpty());
+				
+				// le champ "modele" est une liste deroulante
+				assertThat(PageCreerProjet.input_modeleprojet.getAttribute("class").contains("bandbox"));
+				//("le champ modele n'est pas une bandbox/liste déroulante", PageCreerProjet.input_modeleprojet.getAttribute("class") );	
+				
+				
+				
+				
+				assertEquals("Code", PageCreerProjet.label_codeprojet.getText());
+				// log 
+				assertEquals("Date de debut", PageCreerProjet.label_datedebut_projet.getText());
+				// log 
+				
+			
+				
+						
+			
+				
+				//DateFormat datedujour1 = new SimpleDateFormat("dd/MM/yy").;
+				//Calendar date = new Calendar();
+				//String dateF = df.format(date.getTime());
+				
+				assertEquals(OutilTechnique.formatdate() , PageCreerProjet.datedebut_projet.getText());
+				//la date du jour est égale au champ datedebut => la valeur par défaut est la date du jour
+				
+				
+				assertEquals("Echeance", PageCreerProjet.label_dateecheance_projet.getText());
+				// log 
+				
+				assertThat(PageCreerProjet.input_dateecheanceprojet).isNull();;
+				// la date d'éechance du projet est vide
+				
+				
+				assertEquals("Client", PageCreerProjet.label_clientprojet.getText());
+				// log champ client existe
+				assertThat(PageCreerProjet.input_clientprojet).isNull();
+				// champ client vide par défaut
+				
+				
+				
+				assertEquals("Calendrier", PageCreerProjet.label_calendrierprojet.getText());
+				// log 	
+				assertEquals("Default", PageCreerProjet.combobox_calendrierprojet.getText());
+				// log 	
+				
+				
+				
+				
+				assertEquals("Accepter", PageCreerProjet.bouton_accepterprojet.getText());
+				// log Bouton Accepter est présent
+				
+				
+				assertEquals("Annuler", PageCreerProjet.bouton_annulerprojet.getText());
+				// log Bouton Annuler est présent
+				
+				
+				
+				
+		
+				
+				//Creation du projet
 		
 		
 		// Initialisation de la Page : verification des champs dans le tableau et clic sur le bouton "Continuer"
-				PageCritere PageCritere = PageFactory.initElements(driver, PageCritere.class);
-				assertEquals("Nom", PageCreerProjet.getCritere_nom().getText());
-				// log 
-				assertEquals("Code", PageCritere.getCritere_code().getText());
-				// log 
-				assertEquals("Type", PageCritere.getCritere_type().getText());
-				// log 
-				assertEquals("ActivÃ©", PageCritere.getCritere_active().getText());
-				// log 
-				assertEquals("OpÃ©rations", PageCritere.critere_operations.getText());
-				// log 
-				assertTrue("le bouton crÃ©er n'existe pas", PageCritere.btn_creer.isDisplayed());
-				PageCreerCritere PageCreerCritere = PageCritere.clicBtnCreer(driver);
 		
-		
-		
-		
+				OutilTechnique.remplirChampTexte(PageCreerProjet.input_nomprojet, "PROJET_TEST1");
+				PageCreerProjet.checkbox_codeprojet.click();
+				assertTrue(PageCreerProjet.checkbox.equals(null));
+				OutilTechnique.remplirChampTexte(PageCreerProjet.input_codeprojet, "PRJTEST001");
+				
+				
+				//- Date de début : Sélectionner dans le calendrier date J+5 
+				PageCreerProjet.datedebutprojet.click();
+				
+				LocalDate aujourdhui;
+				LocalDate datedebutprojetpluscinqjours = aujourdhui.plusDays(5);
+				PageCreerProjet.datedebutprojet.click();
+				
+				
+				//- Date échéance: Sélectionner dans le calendrier date J + 15 
+				PageCreerProjet.bouton_dateecheanceprojet.click();
+				
+				
+				
+				//Le projet est créé : 
+				//- dans le menu vertical à gauche de la page -> menu affiché = "Détail du projet" 
+				assertTrue(PageIndex.
+				
+				
+				//- dans le menu horizontal -> onglet affiché = "WBS (tâches)" 
+
+				
+				
+			
 		
 		
 		<p>Affichage d'une pop-up "Créer un nouveau projet" contenant les éléments suivants :</p> 
@@ -137,6 +256,11 @@ public class PRO_01_Creation {
 		
 	}
 
+
+	private void formatdate() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	public WebDriver getDriver() {
 		return driver;

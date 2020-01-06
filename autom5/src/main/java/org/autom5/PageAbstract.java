@@ -29,7 +29,7 @@ public abstract class PageAbstract {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		WebElement b = driver.findElement(By.xpath("//button[@class='z-menu-btn'][contains(text(),'Ressources')]/../../../../.."));
+		WebElement b = driver.findElement(By.xpath("//button[@class='z-menu-btn'][contains(text(),'"+ogl+"')]/../../../../.."));
 		
         action.moveToElement(b).build().perform();
         System.out.println("Je hover sur : "+b);
@@ -39,7 +39,7 @@ public abstract class PageAbstract {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        WebElement a = driver.findElement(By.xpath("//a[@class='z-menu-item-cnt'][contains(text(),'"+btn+"')]"));
+        WebElement a = driver.findElement(By.xpath("//a[@class='z-menu-item-cnt'][.=\" "+btn+"\"]"));
         System.out.println("Je clique sur : "+a);
         a.click();
         
