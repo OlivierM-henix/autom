@@ -21,7 +21,8 @@ public class GRE_01_CreerUtilisateur extends TestCase {
 		PageCnx pge = PageFactory.initElements(driver, PageCnx.class);
 		pge.sidentifier("admin","admin",driver);
 		
-		PageAbstract.selectionnerMenu(driver,"Configuration","Comptes utilisateurs");
+		PageIndex pgi = PageFactory.initElements(driver, PageIndex.class);
+		pgi.selectionnerMenu(driver,"Configuration","Comptes utilisateurs");
 		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 		driver.findElement(By.xpath("//td[@class='z-button-cm'][.='Créer']/../../..")).click();
 		
