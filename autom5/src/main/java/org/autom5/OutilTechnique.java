@@ -39,22 +39,27 @@ public class OutilTechnique {
 		e.sendKeys(s);
 
 	}
-	
-	
+
+
 	public static void screenShot(WebDriver driver, String nom_capture) throws IOException, InterruptedException {
-	    File scr = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-	    File dest = new File("C:\\Temp\\ScreenshotsSelenium\\"+nom_capture+"-"+timestamp()+".png");
-	    System.out.println(dest);
-	    FileUtils.copyFile(scr, dest);
-	    Thread.sleep(1000);
+		File scr = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		File dest = new File("C:\\Temp\\ScreenshotsSelenium\\"+nom_capture+"-"+timestamp()+".png");
+		System.out.println(dest);
+		FileUtils.copyFile(scr, dest);
+		Thread.sleep(1000);
 	}
 
 	public static String timestamp() {
-	    return new SimpleDateFormat("yyyy-MM-dds.HH.mm.ss").format(new Date());
+		return new SimpleDateFormat("yyyy-MM-dds.HH.mm.ss").format(new Date());
 	} 
-	
+
 	public static WebElement obtenir_lgn_i (WebDriver driver, String xpath_tableau, int i) {
 		WebElement lgn_i = driver.findElement(By.xpath(""+xpath_tableau+"//tr["+i+"]"));
+		return lgn_i;
+	}
+
+	public static WebElement obtenir_cellule_i_j (WebDriver driver, String xpath_tableau, int i, int j) {
+		WebElement lgn_i = driver.findElement(By.xpath(""+xpath_tableau+"//tr["+i+"]/td["+j+"]"));
 		return lgn_i;
 	}
 	//Verifier le chemin du dossier de stockage
