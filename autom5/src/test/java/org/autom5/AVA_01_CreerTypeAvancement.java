@@ -2,6 +2,7 @@ package org.autom5;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 import junit.framework.TestCase;
 
@@ -15,6 +16,9 @@ public class AVA_01_CreerTypeAvancement extends TestCase {
 	public void testApp(){
     	driver = OutilTechnique.choisirNavigateur(ENavigateur.chrome);
 		driver.get("http://localhost:8080/libreplan");
+		
+		PageCnx pge = PageFactory.initElements(driver, PageCnx.class);
+		pge.sidentifier("admin","admin",driver);
 		
 		PageAbstract.selectionnerMenu(driver,"Ressources","Types d'avancement");
 		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);

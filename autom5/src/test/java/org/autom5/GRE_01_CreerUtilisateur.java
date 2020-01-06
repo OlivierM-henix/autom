@@ -6,14 +6,15 @@ import org.openqa.selenium.support.PageFactory;
 
 import junit.framework.TestCase;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.autom5.OutilTechnique;
 
-public class AppTestNikita extends TestCase {
+public class GRE_01_CreerUtilisateur extends TestCase {
 	WebDriver driver;
 	ENavigateur chrome;
-	public void testApp(){
+	public void testApp() throws IOException, InterruptedException{
     	driver = OutilTechnique.choisirNavigateur(ENavigateur.chrome);
 		driver.get("http://localhost:8080/libreplan");
 		
@@ -35,6 +36,7 @@ public class AppTestNikita extends TestCase {
 		driver.findElement(By.xpath("//td[@class='z-button-cm'][.='Enregistrer']/../../..")).click();
 		
 		// Faire toutes les vérif...
+		OutilTechnique.screenShot(driver, "test");
 
 		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 		driver.findElement(By.xpath("//span[@class='z-label'][.='testAutomatisé']/../../../td[6]/*/*/*/*/*/*/*/*/*[3]/*/*/*/*[2]/*[2]/img")).click();
