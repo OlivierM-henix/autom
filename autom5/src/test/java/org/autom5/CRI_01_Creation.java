@@ -38,7 +38,7 @@ public class CRI_01_Creation {
 		driver.get("http://localhost:8090/libreplan/");	
 		PageCnx pageCnx = PageFactory.initElements(driver, PageCnx.class);
 		PageIndex pageIndex = pageCnx.sidentifier("admin", "admin", driver);
-		Thread.sleep(5000);
+		Thread.sleep(1000);
 
 		//Vérifier la bonne connexion
 		assertTrue(pageIndex.btn_deconnexion.isEnabled());
@@ -64,36 +64,66 @@ public class CRI_01_Creation {
 		// log 
 		assertTrue("le bouton créer n'existe pas", PageCritere.btn_creer.isDisplayed());
 		PageCreerCritere PageCreerCritere = PageCritere.clicBtnCreer(driver);
+		OutilTechnique.screenShot(driver, "CRI_01_tableau");
 		
-		//Capture d'écran - Ouverture de PageCreerCritere : vérifier que les boutons et champs sont présents dans la page
+		
 		
 		assertTrue("le bouton Enregistrer n'existe pas", PageCreerCritere.btn_enregistrer.isEnabled());
 		assertTrue("le bouton Sauvegarder et continuer n'existe pas", PageCreerCritere.btn_sauvegarder_continuer.isEnabled());
-		assertTrue("le bouton Annuler n'existe pas", PageCreerCritere.btn_annuler.isEnabled());		
+		assertTrue("le bouton Annuler n'existe pas", PageCreerCritere.btn_annuler.isEnabled());	
+		
 		//assertEquals("PARTICIPANT", PageCreerCritere.type_creer_critere.getText());
 		
-		//Capture d'écran - Capture pour le testeur de l'état du tableau proposé. A ajouter, les checkboxes qui doivent être cochées par défaut
+		OutilTechnique.screenShot(driver, "CRI_01_formulaire_creation");
 		
 		OutilTechnique.remplirChampTexte(PageCreerCritere.champs_critere_nom, "Critère - Test bouton [Annuler]");
 		OutilTechnique.remplirChampTexte(PageCreerCritere.champs_critere_description, "Critère - Test bouton [Annuler]");				
 		PageCritere = PageCreerCritere.clicBtnAnnuler(driver);		
-		assertFalse("Critère - Test bouton [Annuler]", false);
-		
-		//Capture d'écran - Test de la fonctionnalité annuler. Les modifications ne doivent pas être enregistrées dans la PageCritere
+		assertFalse("Critère - Test bouton [Annuler]", false);		
+		OutilTechnique.screenShot(driver, "CRI_01_tableau_annulation");
 		
 		PageCritere.clicBtnCreer(driver);
 		OutilTechnique.remplirChampTexte(PageCreerCritere.champs_critere_nom, "Critère - Test bouton [Enregistrer]");
 		OutilTechnique.remplirChampTexte(PageCreerCritere.champs_critere_description, "Critère - Test bouton [Enregistrer]");
 		PageCritere = PageCreerCritere.clicBtnEnregistrer(driver);
-		assertTrue("Critère - Test bouton [Enregistrer]", true);
+		assertTrue("Critère - Test bouton [Enregistrer]", true);		
+		OutilTechnique.screenShot(driver, "CRI_01_tableau_enregistrer");
+		Thread.sleep(1000);
 		
-		
-		//Capture d'écran - Retour PageCritere : vérifier qu'aucune modification du tableau n'a été prise en compte
 		PageCreerCritere = PageCritere.clicBtnCreer(driver);
 		OutilTechnique.remplirChampTexte(PageCreerCritere.champs_critere_nom, "Test bouton [Sauver et continuer]");
 		OutilTechnique.remplirChampTexte(PageCreerCritere.champs_critere_description, "Test bouton [Sauver et continuer]");
 		PageCreerCritere.clicBtnSauvegarderContinuer(driver);
-		assertEquals("Type de critère \"test\" enregistré", PageCreerCritere.critere_message_sauvegarde.getText());
+		assertEquals("Type de critère \"Test bouton [Sauver et continuer]\" enregistré", PageCreerCritere.critere_message_sauvegarde.getText());
+		assertEquals("Modifier Type de critère: Test bouton [Sauver et continuer]", PageCreerCritere.critere_titre.getText());
+		OutilTechnique.screenShot(driver, "CRI_01_message_sauvegarder");
+		PageCritere = PageCreerCritere.clicBtnAnnuler(driver);	
+		
+		//verification de l'enregistrement dans le tableau
+		//assertEquals("Types de critères Liste", PageCritere.critere_titre.getText());
+		assertEquals("Test bouton [Sauver et continuer]", PageCritere.critere_selection_titre_tableau.getText());
+		PageCritere.critere_modification_titre_tableau.click();
+		
+		
+		
+		
+		/* Suppression
+		 
+		PageCritere.critere_supression_titre_tableau.click();
+		PageCritere.critere_valider_supression.click();
+		
+		*/
+		
+		
+		
+		
+	
+		
+		
+		
+		
+		
+		
 		
 		
 		
