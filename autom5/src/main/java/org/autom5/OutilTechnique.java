@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -52,6 +53,10 @@ public class OutilTechnique {
 	    return new SimpleDateFormat("yyyy-MM-dds.HH.mm.ss").format(new Date());
 	} 
 	
+	public WebElement obtenir_lgn_i (WebDriver driver, String xpath_lignes_tableau, int i) {
+		WebElement lgn_i = driver.findElement(By.xpath(""+xpath_lignes_tableau+"["+i+"]"));
+		return lgn_i;
+	}
 	//Verifier le chemin du dossier de stockage
 	//nommer la capture en fonction de son cas de test + fonctionnalit� ex: "CRI_01_connexion" 
 	//commande OutilTechnique.screenShot(driver, "CRI_01_connexion");
