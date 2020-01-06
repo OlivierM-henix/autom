@@ -51,6 +51,14 @@ public class FQU_01 extends PageAbstract{
 		assertTrue(pageFormulaireQualite.cln_nom.getText().equals("Nom"));
 		assertTrue(pageFormulaireQualite.cln_description.getText().equals("Description"));
 		assertTrue(pageFormulaireQualite.cln_operations.getText().equals("Opérations"));
+		assertTrue(pageFormulaireQualite.champ_filtre.isDisplayed());
+		assertTrue(pageFormulaireQualite.btn_filtre.isDisplayed());
 		Thread.sleep(5000);
+		
+		//PAS 3 
+		// Remarque : impossible de clicquer droit sur btn_creer
+		pageFormulaireQualite.btn_creer.click();
+		
+		
 	}
 }
