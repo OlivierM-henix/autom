@@ -59,8 +59,13 @@ public class OutilTechnique {
 	}
 
 	public static WebElement obtenir_cellule_i_j (WebDriver driver, String xpath_tableau, int i, int j) {
-		WebElement lgn_i = driver.findElement(By.xpath(""+xpath_tableau+"//tr["+i+"]/td["+j+"]"));
-		return lgn_i;
+		WebElement cellue_i_j = driver.findElement(By.xpath(""+xpath_tableau+"//tr["+i+"]/td["+j+"]"));
+		return cellue_i_j;
+	}
+
+	public static WebElement obtenir_champ_i_j (WebDriver driver, String xpath_tableau, int i, int j) {
+		WebElement champ_i_j = driver.findElement(By.xpath(""+xpath_tableau+"//tr["+i+"]/td["+j+"]//input"));
+		return champ_i_j;
 	}
 	//Verifier le chemin du dossier de stockage
 	//nommer la capture en fonction de son cas de test + fonctionnalit� ex: "CRI_01_connexion" 
