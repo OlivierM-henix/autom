@@ -47,9 +47,9 @@ public abstract class PageAbstract {
 		
 		try {Thread.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
 		
-		WebElement a = driver.findElement(By.xpath("//a[@class='z-menu-item-cnt'][contains(text(),\""+btn+"\")]"));
+		WebElement c = driver.findElement(By.xpath("//a[@class='z-menu-item-cnt'][contains(text(),\""+btn+"\")]"));
 		System.out.println("selection du sous-menu : "+btn);
-		a.click();
+		c.click();
 
 		//        return PageFactory.initElements(driver, PageAbstract.class);
 	} // PAR EXEMPLE : selectionnerMenu(driver,"Ressources","Machines");
