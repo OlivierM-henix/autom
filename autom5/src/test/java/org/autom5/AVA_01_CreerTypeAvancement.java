@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.autom5.OutilTechnique;
 
-public class AppTestNikita extends TestCase {
+public class AVA_01_CreerTypeAvancement extends TestCase {
 	WebDriver driver;
 	ENavigateur chrome;
 	public void testApp(){
@@ -20,24 +20,18 @@ public class AppTestNikita extends TestCase {
 		PageCnx pge = PageFactory.initElements(driver, PageCnx.class);
 		pge.sidentifier("admin","admin",driver);
 		
-		PageAbstract.selectionnerMenu(driver,"Configuration","Comptes utilisateurs");
+		PageAbstract.selectionnerMenu(driver,"Ressources","Types d'avancement");
 		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 		driver.findElement(By.xpath("//td[@class='z-button-cm'][.='Créer']/../../..")).click();
 		
-		// Parfois, popup d'erreur ! z-button-cm
-//		driver.findElement(By.xpath("//td[@class='z-button-cm'][.='Continuer']")).click();
-//		driver.findElement(By.xpath("//td[@class='z-button-cm'][.='Créer']/../../..")).click();
-		
-		OutilTechnique.remplirChampTexte(driver.findElement(By.xpath("//span[@class='z-label'][.=\"Nom d'utilisateur\"]/../../../td[2]/*/input")),"testAutomatisé");
-		OutilTechnique.remplirChampTexte(driver.findElement(By.xpath("//span[@class='z-label'][.=\"Mot de passe\"]/../../../td[2]/*/input")),"motdepasse");
-		OutilTechnique.remplirChampTexte(driver.findElement(By.xpath("//span[@class='z-label'][.=\"Confirmation du mot de passe\"]/../../../td[2]/*/input")),"motdepasse");
+		OutilTechnique.remplirChampTexte(driver.findElement(By.xpath("//span[@class='z-label'][.=\"Nom d'unité\"]/../../../td[2]/*/input")),"testAutomatisé");
 		
 		driver.findElement(By.xpath("//td[@class='z-button-cm'][.='Enregistrer']/../../..")).click();
 		
 		// Faire toutes les vérif...
 
 		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-		driver.findElement(By.xpath("//span[@class='z-label'][.='testAutomatisé']/../../../td[6]/*/*/*/*/*/*/*/*/*[3]/*/*/*/*[2]/*[2]/img")).click();
+		driver.findElement(By.xpath("//span[@class='z-label'][.='testAutomatisé']/../../../td[4]/*/*/*/*/*/*/*/*/*[3]/*/*/*/*[2]/*[2]/img")).click();
 		driver.findElement(By.xpath("//td[@class='z-button-cm'][.='OK']")).click();
 		
 		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);

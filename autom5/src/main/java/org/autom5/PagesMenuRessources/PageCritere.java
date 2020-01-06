@@ -9,6 +9,8 @@ import org.openqa.selenium.support.PageFactory;
 
 public class PageCritere extends PageAbstract {
 	
+	String btn = "Test bouton [Sauver et continuer]";
+	
 	@FindBy (xpath="//span[@class='create-button global-action z-button']")
 	public
 	WebElement btn_creer;
@@ -32,6 +34,16 @@ public class PageCritere extends PageAbstract {
 	@FindBy (xpath="//div[@class='clickable-rows z-grid']//div[(text()='Opérations')]")
 	public
 	WebElement critere_operations;	
+	
+	@FindBy (xpath="//span[@title= +btn+]//ancestor::tr//span[@title='Supprimer']")
+	public
+	WebElement critere_supression;	
+	
+	@FindBy (xpath="//div[@class=\"z-window-modal-cm\"]//td[@class='z-button-cm']")
+	public
+	WebElement critere_valider_supression;	
+	
+	
 	
 	
 	
