@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.concurrent.TimeUnit;
 
+import org.autom5.PagesMenuRessources.PageEditerFormulaire;
 import org.autom5.PagesMenuRessources.PageFormulaireQualite;
 import org.junit.After;
 import org.junit.Before;
@@ -13,6 +14,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FQU_01 extends PageAbstract{
 
@@ -53,11 +57,23 @@ public class FQU_01 extends PageAbstract{
 		assertTrue(pageFormulaireQualite.cln_operations.getText().equals("Opérations"));
 		assertTrue(pageFormulaireQualite.champ_filtre.isDisplayed());
 		assertTrue(pageFormulaireQualite.btn_filtre.isDisplayed());
-		Thread.sleep(5000);
 		
 		//PAS 3 
 		// Remarque : impossible de clicquer droit sur btn_creer
-		pageFormulaireQualite.btn_creer.click();
+		PageEditerFormulaire pageEditerFormulaire = pageFormulaireQualite.creerFormulaire(driver);
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		wait.until(ExpectedConditions.visibilityOf(pageEditerFormulaire.lgn_nom));		
+		assertTrue(pageEditerFormulaire.lgn_nom.getText().equals("Nom"));
+		assertTrue(pageEditerFormulaire.lgn_description.getText().equals("Description"));
+		assertTrue(pageEditerFormulaire.lgn_type.getText().equals("Type de formulaire qualité"));
+		assertTrue(pageEditerFormulaire.lgn_avancement.getText().equals("Avancement du rapport"));
+		assertTrue(pageEditerFormulaire.champ_nom.isDisplayed());
+		assertTrue(pageEditerFormulaire.champ_description.isDisplayed());
+		Select select = new Select(pageEditerFormulaire.select_type);
+		assertFalse(select.isMultiple());
+		assertTrue(select.getFirstSelectedOption().getText().equals("par pourcentage"));
+//		assertTrue(pageEditerFormulaire.checkbox_avancement.getAttribute("value").equals("0"));
+		
 		
 		
 	}

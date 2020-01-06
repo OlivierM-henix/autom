@@ -1,7 +1,9 @@
 package org.autom5.PagesMenuRessources;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 public class PageFormulaireQualite {
@@ -26,9 +28,13 @@ public class PageFormulaireQualite {
 	public
 	WebElement btn_filtre;
 	
-	@FindBy(xpath="//table[@class=\"z-button-focus\"]//td[text()=\"Créer\"]")
+	@FindBy(xpath="//td[text()=\"Créer\"]")
 	public
 	WebElement btn_creer;
-	
-}
 
+
+public PageEditerFormulaire creerFormulaire(WebDriver driver) {
+	btn_creer.click();
+	return PageFactory.initElements(driver, PageEditerFormulaire.class);
+}
+}
