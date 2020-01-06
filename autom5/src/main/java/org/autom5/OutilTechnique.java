@@ -43,13 +43,12 @@ public class OutilTechnique {
 
 	}
 	public static String formatdate() {
-        Date maintenant = (Date) Calendar.getInstance().getTime();
-        String dateaujformatcourt = new SimpleDateFormat("dd M YYYY").format(maintenant);
-        //System.out.println(dateaujformatcourt);
-        return (dateaujformatcourt);
-    }
-	
-	
+		Date maintenant = (Date) Calendar.getInstance().getTime();
+		String dateaujformatcourt = new SimpleDateFormat("dd M YYYY").format(maintenant);
+		//System.out.println(dateaujformatcourt);
+		return (dateaujformatcourt);
+	}	
+
 	LocalDate aujourdhui = LocalDate.now(); 
 	LocalDate demain = aujourdhui.plusDays(1);
 	LocalDate hier = aujourdhui.minusDays(1); 
@@ -93,12 +92,8 @@ public class OutilTechnique {
 	//commande OutilTechnique.screenShot(driver, "CRI_01_connexion");
 	//ex nommage attendu : CRI_01_connexion - 2019-05-01 : 18:54:08)
 
-	public class CalendarCalc {
-		 
-	    public void main(String[] args) {
-	        //utiliser le calendrier par d�faut
-	        Calendar calendar = Calendar.getInstance();
+	
 	 
-}
+
+
 	}
-}
