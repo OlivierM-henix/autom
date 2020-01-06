@@ -91,12 +91,8 @@ public class OutilTechnique {
 	//commande OutilTechnique.screenShot(driver, "CRI_01_connexion");
 	//ex nommage attendu : CRI_01_connexion - 2019-05-01 : 18:54:08)
 
-	public class CalendarCalc {
+	
+	 
 
-		public void main(String[] args) {
-			//utiliser le calendrier par défaut
-			Calendar calendar = Calendar.getInstance();
 
-		}
 	}
-}
