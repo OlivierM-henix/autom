@@ -15,9 +15,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class PageAbstract {
 
@@ -33,14 +30,9 @@ public abstract class PageAbstract {
 
 	public void selectionnerMenu(WebDriver driver, String ogl,String btn) {
 		Actions action = new Actions (driver);
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		WebElement b = driver.findElement(By.xpath("//button[@class='z-menu-btn'][contains(text(),'Ressources')]/../../../../.."));
-
+		try {Thread.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
+		
+		WebElement b = driver.findElement(By.xpath("//button[@class='z-menu-btn'][contains(text(),\""+ogl+"\")]/../../../../.."));
 		action.moveToElement(b).build().perform();
 		System.out.println("s�lection de l'onglet : "+b);
 		try {
@@ -51,6 +43,12 @@ public abstract class PageAbstract {
 		}
 		WebElement a = driver.findElement(By.xpath("//a[@class='z-menu-item-cnt'][contains(text(),'"+btn+"')]"));
 		System.out.println("s�lection du sous-menu : "+a);
+		System.out.println("selection de l'onglet : "+ogl);
+		
+		try {Thread.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
+		
+		WebElement a = driver.findElement(By.xpath("//a[@class='z-menu-item-cnt'][contains(text(),\""+btn+"\")]"));
+		System.out.println("selection du sous-menu : "+btn);
 		a.click();
 
 		//        return PageFactory.initElements(driver, PageAbstract.class);
