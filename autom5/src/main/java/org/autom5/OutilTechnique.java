@@ -52,6 +52,10 @@ public class OutilTechnique {
 	public static String timestamp() {
 		return new SimpleDateFormat("yyyy-MM-dds.HH.mm.ss").format(new Date());
 	} 
+	
+	//nommer la capture en fonction de son cas de test + fonctionnalite ex: "CRI_01_connexion" 
+	//commande OutilTechnique.screenShot(driver, "CRI_01_connexion");
+	//ex nommage attendu : CRI_01_connexion - 2019-05-01 : 18:54:08)
 
 	public static WebElement obtenir_lgn_i (WebDriver driver, String xpath_tableau, int i) {
 		WebElement lgn_i = driver.findElement(By.xpath(""+xpath_tableau+"//tr["+i+"]"));
@@ -67,9 +71,6 @@ public class OutilTechnique {
 		WebElement champ_i_j = driver.findElement(By.xpath(""+xpath_tableau+"//tr["+i+"]/td["+j+"]//input"));
 		return champ_i_j;
 	}
-	//Verifier le chemin du dossier de stockage
-	//nommer la capture en fonction de son cas de test + fonctionnalit� ex: "CRI_01_connexion" 
-	//commande OutilTechnique.screenShot(driver, "CRI_01_connexion");
-	//ex nommage attendu : CRI_01_connexion - 2019-05-01 : 18:54:08)
+	
 
 }
