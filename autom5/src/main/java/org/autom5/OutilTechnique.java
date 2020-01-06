@@ -58,13 +58,17 @@ public class OutilTechnique {
 		return lgn_i;
 	}
 
+	
+	//Les deux méthodes suivantes sont valables sur cette application mais probablement pas génériques, à cause du faible formalisme des tableaux.
+	// Fournir le xpath racine, c'est à dire jusqu'à la balise <table>
+	//Exemple : "//div[@class=\"z-panel-body\"]//div[@class=\"z-grid-body\"]/table"
 	public static WebElement obtenir_cellule_i_j (WebDriver driver, String xpath_tableau, int i, int j) {
-		WebElement cellue_i_j = driver.findElement(By.xpath(""+xpath_tableau+"//tr["+i+"]/td["+j+"]"));
+		WebElement cellue_i_j = driver.findElement(By.xpath(""+xpath_tableau+"/tbody[2]/tr["+i+"]/td["+j+"]"));
 		return cellue_i_j;
 	}
 
 	public static WebElement obtenir_champ_i_j (WebDriver driver, String xpath_tableau, int i, int j) {
-		WebElement champ_i_j = driver.findElement(By.xpath(""+xpath_tableau+"//tr["+i+"]/td["+j+"]//input"));
+		WebElement champ_i_j = driver.findElement(By.xpath(""+xpath_tableau+"/tbody[2]/tr["+i+"]/td["+j+"]//input"));
 		return champ_i_j;
 	}
 	//Verifier le chemin du dossier de stockage
