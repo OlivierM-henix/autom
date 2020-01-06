@@ -31,7 +31,7 @@ public abstract class PageAbstract {
 	WebElement btn_calendrier;
 
 
-	public void selectionnerMenu(WebDriver driver, String ogl,String btn) {
+	public static void selectionnerMenu(WebDriver driver, String ogl,String btn) {
 		Actions action = new Actions (driver);
 		try {
 			Thread.sleep(1000);
