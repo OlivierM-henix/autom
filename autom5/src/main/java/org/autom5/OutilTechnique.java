@@ -1,4 +1,12 @@
 package org.autom5;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -30,4 +38,22 @@ public class OutilTechnique {
 		e.sendKeys(s);
 
 	}
+	
+	
+	public static void screenShot(WebDriver driver, String nom_capture) throws IOException, InterruptedException {
+	    File scr = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+	    File dest = new File("C:\\Users\\formation\\Documents\\GitHub\\autom\\autom5\\target\\"+nom_capture+"-"+timestamp()+".png");
+	    FileUtils.copyFile(scr, dest);
+	    Thread.sleep(1000);
+	}
+
+	public static String timestamp() {
+	    return new SimpleDateFormat("yyyy-MM-dds:HH:mm:ss").format(new Date());
+	} 
+	
+	//Verifier le chemin du dossier de stockage
+	//nommer la capture en fonction de son cas de test + fonctionnalit� ex: "CRI_01_connexion" 
+	//commande OutilTechnique.screenShot(driver, "CRI_01_connexion");
+	//ex nommage attendu : CRI_01_connexion - 2019-05-01 : 18:54:08)
+
 }

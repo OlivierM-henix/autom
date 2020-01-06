@@ -42,7 +42,7 @@ public abstract class PageAbstract {
 		WebElement b = driver.findElement(By.xpath("//button[@class='z-menu-btn'][contains(text(),'Ressources')]/../../../../.."));
 
 		action.moveToElement(b).build().perform();
-		System.out.println("sélection de l'onglet : "+b);
+		System.out.println("selection de l'onglet : "+ogl);
 		try {
 			Thread.sleep(200);
 		} catch (InterruptedException e) {
@@ -50,29 +50,14 @@ public abstract class PageAbstract {
 			e.printStackTrace();
 		}
 		WebElement a = driver.findElement(By.xpath("//a[@class='z-menu-item-cnt'][contains(text(),'"+btn+"')]"));
-		System.out.println("sélection du sous-menu : "+a);
+		System.out.println("selection du sous-menu : "+btn);
 		a.click();
 
 		//        return PageFactory.initElements(driver, PageAbstract.class);
 	} // PAR EXEMPLE : selectionnerMenu(driver,"Ressources","Machines");
 	
 	
-	public static void screenShot(WebDriver driver, String nom_capture) throws IOException, InterruptedException {
-	    File scr = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-	    File dest = new File(".\\src\\test\\"+nom_capture+ "-" + timestamp() + ".png");
-	    FileUtils.copyFile(scr, dest);
-	    Thread.sleep(1000);
-	}
-
-	public static String timestamp() {
-	    return new SimpleDateFormat("yyyy-MM-dd : HH:mm:ss").format(new Date());
-	} 
 	
-	//Verifier le chemin du dossier de stockage
-	//nommer la capture en fonction de son cas de test + fonctionnalité ex: "CRI_01_connexion" 
-	//commande PageAbstract.screenShot(driver, "CRI_01_connexion");
-	//ex nommage attendu : CRI_01_connexion - 2019-05-01 : 18:54:08)
-
 
 }
 

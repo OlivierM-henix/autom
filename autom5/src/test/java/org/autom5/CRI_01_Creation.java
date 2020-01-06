@@ -2,6 +2,7 @@ package org.autom5;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.autom5.PagesMenuRessources.PageCreerCritere;
@@ -32,7 +33,7 @@ public class CRI_01_Creation {
 	
 
 	@Test
-	public void test() throws InterruptedException {
+	public void test() throws InterruptedException, IOException {
 		//Accéder à l’application et se connecter en tant que admin/admin
 		driver.get("http://localhost:8090/libreplan/");	
 		PageCnx pageCnx = PageFactory.initElements(driver, PageCnx.class);
@@ -65,10 +66,9 @@ public class CRI_01_Creation {
 		PageCreerCritere PageCreerCritere = PageCritere.clicBtnCreer(driver);
 		
 		//Capture d'écran - Ouverture de PageCreerCritere : vérifier que les boutons et champs sont présents dans la page
-		//assertTrue("le bouton Enregistrer n'existe pas", PageCreerCritere.btn_enregistrer.isDisplayed());
-		//assertTrue("le bouton Sauvegarder et continuer n'existe pas", PageCreerCritere.btn_sauvegarder_continuer.isDisplayed());
-		//assertTrue("le bouton Annuler n'existe pas", PageCreerCritere.btn_annuler.isDisplayed());
-		//assertEquals("Modifier", PageCreerCritere.creer_critere_modifier.getText());
+		assertTrue("le bouton Enregistrer n'existe pas", PageCreerCritere.btn_enregistrer.isEnabled());
+		assertTrue("le bouton Sauvegarder et continuer n'existe pas", PageCreerCritere.btn_sauvegarder_continuer.isEnabled());
+		assertTrue("le bouton Annuler n'existe pas", PageCreerCritere.btn_annuler.isEnabled());		
 		//Capture d'écran - Capture pour le testeur de l'état du tableau proposé. A ajouter, les checkboxes qui doivent être cochées par défaut
 		
 		//OutilTechnique.remplirChampTexte(PageCreerCritere.champs_critere_nom, "Critère - Test bouton [Annuler]");
