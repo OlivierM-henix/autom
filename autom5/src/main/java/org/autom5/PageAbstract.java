@@ -18,7 +18,7 @@ import org.openqa.selenium.support.FindBy;
 
 public abstract class PageAbstract {
 
-	@FindBy(xpath="//a[text()=\"[DÃ©connexion]\"]")
+	@FindBy(xpath="//a[text()=\"[Déconnexion]\"]")
 	WebElement btn_deconnexion;
 
 	@FindBy(xpath="//td[@class=\"usuario\"][2]")
@@ -30,6 +30,29 @@ public abstract class PageAbstract {
 
 	public void selectionnerMenu(WebDriver driver, String ogl,String btn) {
 		Actions action = new Actions (driver);
+
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		WebElement b = driver.findElement(By.xpath("//button[@class='z-menu-btn'][contains(text(),'"+ogl+"')]/../../../../.."));
+		
+        action.moveToElement(b).build().perform();
+        System.out.println("Je hover sur : "+b);
+        try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        WebElement a = driver.findElement(By.xpath("//a[@class='z-menu-item-cnt'][.=\" "+btn+"\"]"));
+        System.out.println("Je clique sur : "+a);
+        a.click();
+        
+//        return PageFactory.initElements(driver, PageAbstract.class);
+
 		try {Thread.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
 		
 		WebElement b = driver.findElement(By.xpath("//button[@class='z-menu-btn'][contains(text(),\""+ogl+"\")]/../../../../.."));
@@ -50,6 +73,7 @@ public abstract class PageAbstract {
 		c.click();
 
 		//        return PageFactory.initElements(driver, PageAbstract.class);
+
 	} // PAR EXEMPLE : selectionnerMenu(driver,"Ressources","Machines");
 	
 	

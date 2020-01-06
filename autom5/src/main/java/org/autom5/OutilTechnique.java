@@ -1,9 +1,12 @@
 package org.autom5;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Date;
-
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -39,6 +42,18 @@ public class OutilTechnique {
 		e.sendKeys(s);
 
 	}
+	public static String formatdate() {
+		Date maintenant = (Date) Calendar.getInstance().getTime();
+		String dateaujformatcourt = new SimpleDateFormat("dd M YYYY").format(maintenant);
+		//System.out.println(dateaujformatcourt);
+		return (dateaujformatcourt);
+	}	
+
+	LocalDate aujourdhui = LocalDate.now(); 
+	LocalDate demain = aujourdhui.plusDays(1);
+	LocalDate hier = aujourdhui.minusDays(1); 
+	LocalDate dansUnMois = aujourdhui.plusMonths(1); // Calcule correctement les jours du mois. 
+
 
 
 	public static void screenShot(WebDriver driver, String nom_capture) throws IOException, InterruptedException {
@@ -62,15 +77,24 @@ public class OutilTechnique {
 		return lgn_i;
 	}
 
+	
+	//Les deux méthodes suivantes sont valables sur cette application mais probablement pas génériques, à cause du faible formalisme des tableaux.
+	// Fournir le xpath racine, c'est à dire jusqu'à la balise <table>
+	//Exemple : "//div[@class=\"z-panel-body\"]//div[@class=\"z-grid-body\"]/table"
+	
 	public static WebElement obtenir_cellule_i_j (WebDriver driver, String xpath_tableau, int i, int j) {
-		WebElement cellue_i_j = driver.findElement(By.xpath(""+xpath_tableau+"//tr["+i+"]/td["+j+"]"));
+		WebElement cellue_i_j = driver.findElement(By.xpath(""+xpath_tableau+"/tbody[2]/tr["+i+"]/td["+j+"]"));
 		return cellue_i_j;
 	}
 
 	public static WebElement obtenir_champ_i_j (WebDriver driver, String xpath_tableau, int i, int j) {
-		WebElement champ_i_j = driver.findElement(By.xpath(""+xpath_tableau+"//tr["+i+"]/td["+j+"]//input"));
+		WebElement champ_i_j = driver.findElement(By.xpath(""+xpath_tableau+"/tbody[2]/tr["+i+"]/td["+j+"]//input"));
 		return champ_i_j;
 	}
 	
 
-}
+	
+	 
+
+
+	}
