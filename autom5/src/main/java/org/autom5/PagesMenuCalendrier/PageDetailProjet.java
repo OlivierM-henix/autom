@@ -24,11 +24,34 @@ public class PageDetailProjet {
 
 	WebDriver driver;
 
-	@FindBy (xpath="//table[@id='aLKAea-box']//img") public static 
-	WebElement icone_disquetteenregistrer;
-	//table[@id='aLKAea-box']//img
 
 
+	@FindBy (xpath="//img[contains(@src, 'back.png')]") public static 
+	WebElement icone_annuler;
+	
+	@FindBy (xpath="//img[contains(@src, 'save.png')]") public static 
+	WebElement icone_enregistrer;
+	
+	
+	@FindBy (xpath="//div[contains(text(),'Confirmer la fenêtre de sortie')]") public static 
+	WebElement popupdiv_annulation;
+	
+	//div[contains(text(),'Confirmer la fenêtre de sortie')]
+	
+	@FindBy (xpath="//span[contains(text(),'Les modifications non enregistrées seront perdues. Êtes-vous sûr ?')]") public static 
+	WebElement message_popupdiv_annulation;
+	
+	//span[contains(text(),'Les modifications non enregistrées seront perdues.')]
+	
+	@FindBy (xpath="//td[contains(text(),'OK')]") public static 
+	WebElement popupdiv_boutonok;
+	//td[contains(text(),'OK')]
+	
+	@FindBy (xpath="//table[@class='z-button-clk']//td[@class='z-button-cm'][contains(text(),'Annuler')]") public static 
+	WebElement popupdiv_boutonannuler;
+	
+	
+	
 
 	public  PageDetailProjet() {
 		WebElement b = driver.findElement(By.xpath("//table[@id='aLKAea-box']//img"));
