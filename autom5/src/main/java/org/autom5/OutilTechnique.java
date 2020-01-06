@@ -42,13 +42,14 @@ public class OutilTechnique {
 	
 	public static void screenShot(WebDriver driver, String nom_capture) throws IOException, InterruptedException {
 	    File scr = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-	    File dest = new File("C:\\Users\\formation\\Documents\\GitHub\\autom\\autom5\\target\\"+nom_capture+"-"+timestamp()+".png");
+	    File dest = new File("C:\\Temp\\ScreenshotsSelenium\\"+nom_capture+"-"+timestamp()+".png");
+	    System.out.println(dest);
 	    FileUtils.copyFile(scr, dest);
 	    Thread.sleep(1000);
 	}
 
 	public static String timestamp() {
-	    return new SimpleDateFormat("yyyy-MM-dds:HH:mm:ss").format(new Date());
+	    return new SimpleDateFormat("yyyy-MM-dds.HH.mm.ss").format(new Date());
 	} 
 	
 	//Verifier le chemin du dossier de stockage

@@ -2,6 +2,7 @@ package org.autom5.PagesMenuRessources;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 public class PageFormulaireQualite {
 
@@ -16,20 +17,18 @@ public class PageFormulaireQualite {
 	@FindBy(xpath="//div[@class='clickable-rows z-grid']//div[(text()='Opérations')]")
 	public
 	WebElement cln_operations;
+	
+	@FindBy(xpath="//div[@class=\"z-window-embedded\"]//input[@class=\"z-textbox\"]")
+	public
+	WebElement champ_filtre;
+	
+	@FindBy(xpath="//div[@class=\"z-window-embedded\"]//td[text()=\"Filtre\"]")
+	public
+	WebElement btn_filtre;
+	
+	@FindBy(xpath="//table[@class=\"z-button-focus\"]//td[text()=\"Créer\"]")
+	public
+	WebElement btn_creer;
+	
 }
 
-
-//La page contient :
-//
-//- un tableau avec les colonnes suivantes :
-//
-//Nom
-//Description
-//Opérations
-//- un champ de saisie "Filtrer les formulaires qualité par: nom" associé à un bouton [Filtre]
-//
-// 
-//
-//- un bouton [Créer]
-
-//Les entetes de colonne 1, 2 et 3 : tr[@id="hZ3Qt4"]/th
