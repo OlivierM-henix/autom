@@ -1,5 +1,7 @@
 package org.autom5;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,7 +11,6 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
->>>>>>> 7309b63565d7c685a1103583bb2f9ab667ab23c4
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -42,13 +43,12 @@ public class OutilTechnique {
 
 	}
 	public static String formatdate() {
-        Date maintenant = (Date) Calendar.getInstance().getTime();
-        String dateaujformatcourt = new SimpleDateFormat("dd M YYYY").format(maintenant);
-        //System.out.println(dateaujformatcourt);
-        return (dateaujformatcourt);
-    }
-	
-	
+		Date maintenant = (Date) Calendar.getInstance().getTime();
+		String dateaujformatcourt = new SimpleDateFormat("dd M YYYY").format(maintenant);
+		//System.out.println(dateaujformatcourt);
+		return (dateaujformatcourt);
+	}	
+
 	LocalDate aujourdhui = LocalDate.now(); 
 	LocalDate demain = aujourdhui.plusDays(1);
 	LocalDate hier = aujourdhui.minusDays(1); 
@@ -88,11 +88,11 @@ public class OutilTechnique {
 	//ex nommage attendu : CRI_01_connexion - 2019-05-01 : 18:54:08)
 
 	public class CalendarCalc {
-		 
-	    public void main(String[] args) {
-	        //utiliser le calendrier par défaut
-	        Calendar calendar = Calendar.getInstance();
-	 
-}
+
+		public void main(String[] args) {
+			//utiliser le calendrier par défaut
+			Calendar calendar = Calendar.getInstance();
+
+		}
 	}
 }

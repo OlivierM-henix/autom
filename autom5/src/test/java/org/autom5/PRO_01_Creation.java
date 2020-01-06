@@ -35,7 +35,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-public class PRO_01_Creation {
+public class PRO_01_Creation extends PageAbstract {
 
 
 
@@ -46,11 +46,6 @@ public class PRO_01_Creation {
 		driver = OutilTechnique.choisirNavigateur(ENavigateur.chrome);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
-
-	//@After
-	//public void fermerNavigateur () {
-	//	driver.quit();
-	//}
 
 	@Test
 	public void test() throws InterruptedException {
@@ -66,61 +61,55 @@ public class PRO_01_Creation {
 
 		// Se rendre sur la page Ã  tester l'aide de la mÃ©thode selectionnerMenu de la PageAbstract: exemple avec Ressources / Formulaires QualitÃ©
 		// Adapter les noms Ã  votre page !!!
-
 		//PAS NECESSAIRE DANS LE TEST CALENDRIER CAR ONGLET PAR DEFAUT
 		//pageIndex.selectionnerMenu(driver, "Ressources", "CritÃ¨re");
 		//PageFormulaireQualite pageFormulaireQualite = PageFactory.initElements(driver, PageFormulaireQualite.class);
-	
-
-
-
 
 		PageIndex pageindex = PageFactory.initElements(driver, PageIndex.class);
 
 		//Accéder au formulaire de création d'un projet
 		//Cliquer sur l'icône "Créer un nouveau projet" (1ère icône "+" située en dessous du logo "LibrePlan")
 		driver.findElement(By.xpath("//span[@class='planner-icon z-button']//img")).click();
-
 		PageCreerProjet PageCreerProjet = PageFactory.initElements(driver, PageCreerProjet.class);
 
-		//le champ "nom" est présent
+		//vérifier que le champ "nom" est présent
 		assertEquals("Nom", PageCreerProjet.label_nomprojet.getText());
-		// log 		
+		//log 	
 
-		//le champ "nom" du projet est vide par défaut
+		//vérifier que le champ "nom" du projet est vide par défaut
 		assertThat(PageCreerProjet.input_nomprojet.getText().isEmpty());
 		// log 			
 
-		//le champ "modele" est présent
+		//Vérifier que le champ "modele" est présent
 		assertEquals("Modele", PageCreerProjet.label_modeleprojet.getText());	
 		// log 
 
-		// log le champ "modele" est vide par défaut 
+		//vérifier que le log le champ "modele" est vide par défaut 
 		assertThat(PageCreerProjet.input_modeleprojet.getText().isEmpty());
 
-		// le champ "modele" est une liste deroulante
+		// Vérifier que le champ "modele" est une liste deroulante
 		assertThat(PageCreerProjet.input_modeleprojet.getAttribute("class").contains("bandbox"));
 		//("le champ modele est une bandbox/liste déroulante", PageCreerProjet.input_modeleprojet.getAttribute("class") );	
 
-
+		//vérifier que le label code est présent
 		assertEquals("Code", PageCreerProjet.label_codeprojet.getText());
 		// log 
+		
+		// Vérifier que date de début est présent
 		assertEquals("Date de debut", PageCreerProjet.label_datedebut_projet.getText());
 		// log 
-
-		//DateFormat datedujour1 = new SimpleDateFormat("dd/MM/yy").;
-		//Calendar date = new Calendar();
-		//String dateF = df.format(date.getTime());
-
+		
+		
 		assertEquals(OutilTechnique.formatdate() , PageCreerProjet.datedebut_projet.getText());
 		//la date du jour est égale au champ datedebut => la valeur par défaut est la date du jour
 
-
+		// Vérifier que label échéance est affiché (atttention= is displayed)
 		assertEquals("Echeance", PageCreerProjet.label_dateecheance_projet.getText());
 		// log 
 
+		// Verifier que la date d'éechance du projet est vide par défaut
 		assertThat(PageCreerProjet.input_dateecheanceprojet).isNull();;
-		// la date d'éechance du projet est vide
+		// log
 
 
 		assertEquals("Client", PageCreerProjet.label_clientprojet.getText());
@@ -154,67 +143,68 @@ public class PRO_01_Creation {
 		PageCreerProjet.checkbox_codeprojet.click();
 		assertTrue(PageCreerProjet.checkbox.equals(null));
 		OutilTechnique.remplirChampTexte(PageCreerProjet.input_codeprojet, "PRJTEST001");
-		
+
 		//- Date de début : Sélectionner dans le calendrier date J+5 
 		PageCreerProjet.datedebutprojet.click();
-		LocalDate aujourdhui;
-		LocalDate datedebutprojetpluscinqjours = aujourdhui.plusDays(5);
-		PageCreerProjet.datedebutprojet.click();
+		OutilTechnique.formatdate();
+		System.out.println(OutilTechnique.formatdate());
 		
+		PageCreerProjet.datedebutprojet.click();
+
 		//- Date échéance: Sélectionner dans le calendrier date J + 15 
 		PageCreerProjet.bouton_dateecheanceprojet.click();
-		
+
 		//Le projet est créé : 
 		//- dans le menu vertical à gauche de la page -> menu affiché = "Détail du projet" 
 		assertTrue(pageIndex.detailprojet.isDisplayed());
-	
+
 		//- dans le menu horizontal -> onglet affiché = "WBS (tâches)" 
 		assertTrue(pageIndex.ong_WBStaches.isDisplayed());
 
-		
+
 		//Vérifier les onglets - menu vertical : 
 		//Vérifier le nom et la présence des onglets présent dans le menu vertical. 
 
-		
-		
+
+
 		//Bouton d'enregistrement et d'annulation de l'édition du projet </strong>: 
-		 
+
 		//Vérifier la présence des boutons d'enregistrement et d'annulation de l'édition du projet. 
 		//"Présence au-dessus du menu vertical des boutons avec les caractéristiques suivantes : 
-		 
-		
+
+
 		//assertTrue(PageDetailProjet.
 		//PageCreerProjet.
-		
-		PageDetailProjet.survol_element(b).click();
-		AssertThat(aaa).
-				
-				
-				
-				
-				
-				
+
+		//PageDetailProjet.survol_element(b).click();
+		//AssertThat(aaa).
+
+
+
+
+
+
 		/*- Bouton d'enregistrement : 
 		<ul> 
 		 <li>icône représentant une disquette</li> 
 		 <li>infobulle associée à l'icône ""Enregistrer le projet""</li> 
 		</ul> 
 		Page
-		
+
 		- Bouton d'annulation de l'édition : 
 		<ul> 
 		 <li>icône représentant une flèche retour</li> 
 		 <li>infobulle associée à l'icône ""Annuler l'édition""</li> 
 		</ul>"
-		*/
-		
+		 */
+
 		/*
 		 * Les onglets du menu vertical sont dans l'ordre suivant : <ul>
 		 * <li>Planification de projet</li> <li>Détail du projet</li> <li>Chargement des
 		 * ressources</li> <li>Allocation avancée</li> <li>Tableau de bord</li> </ul>
 		 */
 
-		AssertThat(MenuHorizontal).
+	//	AssertThat(MenuHorizontal).
 
 
 
@@ -223,17 +213,17 @@ public class PRO_01_Creation {
 
 
 
-				//Capture d'Ã©cran - Ouverture de PageCreerCritere : vÃ©rifier que les boutons et champs sont prÃ©sents dans la page
-				//assertTrue("le bouton Enregistrer n'existe pas", PageCreerCritere.btn_enregistrer.isDisplayed());
-				//assertTrue("le bouton Sauvegarder et continuer n'existe pas", PageCreerCritere.btn_sauvegarder_continuer.isDisplayed());
-				//assertTrue("le bouton Annuler n'existe pas", PageCreerCritere.btn_annuler.isDisplayed());
-				//assertEquals("Modifier", PageCreerCritere.creer_critere_modifier.getText());
-				//Capture d'Ã©cran - Capture pour le testeur de l'Ã©tat du tableau proposÃ©. A ajouter, les checkboxes qui doivent Ãªtre cochÃ©es par dÃ©faut
+		//Capture d'Ã©cran - Ouverture de PageCreerCritere : vÃ©rifier que les boutons et champs sont prÃ©sents dans la page
+		//assertTrue("le bouton Enregistrer n'existe pas", PageCreerCritere.btn_enregistrer.isDisplayed());
+		//assertTrue("le bouton Sauvegarder et continuer n'existe pas", PageCreerCritere.btn_sauvegarder_continuer.isDisplayed());
+		//assertTrue("le bouton Annuler n'existe pas", PageCreerCritere.btn_annuler.isDisplayed());
+		//assertEquals("Modifier", PageCreerCritere.creer_critere_modifier.getText());
+		//Capture d'Ã©cran - Capture pour le testeur de l'Ã©tat du tableau proposÃ©. A ajouter, les checkboxes qui doivent Ãªtre cochÃ©es par dÃ©faut
 
-				//OutilTechnique.remplirChampTexte(PageCreerCritere.champs_critere_nom, "CritÃ¨re - Test bouton [Annuler]");
-				//OutilTechnique.remplirChampTexte(PageCreerCritere.champs_critere_description, "CritÃ¨re - Test bouton [Annuler]");
-				//assertEquals("PARTICIPANT", PageCreerCritere.type_creer_critere.getText());		
-				PageCritere = PageCreerCritere.clicBtnAnnuler(driver);		
+		//OutilTechnique.remplirChampTexte(PageCreerCritere.champs_critere_nom, "CritÃ¨re - Test bouton [Annuler]");
+		//OutilTechnique.remplirChampTexte(PageCreerCritere.champs_critere_description, "CritÃ¨re - Test bouton [Annuler]");
+		//assertEquals("PARTICIPANT", PageCreerCritere.type_creer_critere.getText());		
+	/*	PageCritere = PageCreerCritere.clicBtnAnnuler(driver);		
 		assertFalse("CritÃ¨re - Test bouton [Annuler]", false);
 		//Capture d'Ã©cran - Test de la fonctionnalitÃ© annuler. Les modifications ne doivent pas Ãªtre enregistrÃ©es dans la PageCritere
 
@@ -252,5 +242,6 @@ public class PRO_01_Creation {
 		PageCritere = PageCreerCritere.clicBtnEnregistrer(driver);
 
 	}
-
+*/
+}
 }
