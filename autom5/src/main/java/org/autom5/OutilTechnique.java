@@ -1,5 +1,7 @@
 package org.autom5;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,7 +11,6 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
->>>>>>> 7309b63565d7c685a1103583bb2f9ab667ab23c4
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -94,7 +95,7 @@ public class OutilTechnique {
 	public class CalendarCalc {
 		 
 	    public void main(String[] args) {
-	        //utiliser le calendrier par défaut
+	        //utiliser le calendrier par dï¿½faut
 	        Calendar calendar = Calendar.getInstance();
 	 
 }
