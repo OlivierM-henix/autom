@@ -13,11 +13,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 public class CRI_01_Creation {
 	
 	WebDriver driver;
+	String nom_critere = "Test bouton [Sauver et continuer]";
+	String nom_critere2 = "Test bouton [Sauver et continuer] 2";
+	
 	
 	@Before
 	public void initialisations() throws InterruptedException {
@@ -98,35 +102,47 @@ public class CRI_01_Creation {
 		assertEquals("Modifier Type de critère: Test bouton [Sauver et continuer]", PageCreerCritere.critere_titre.getText());
 		OutilTechnique.screenShot(driver, "CRI_01_message_sauvegarder");
 		PageCritere = PageCreerCritere.clicBtnAnnuler(driver);	
+		Thread.sleep(1000);
 		
-		//verification de l'enregistrement dans le tableau
-		//assertEquals("Types de critères Liste", PageCritere.critere_titre.getText());
-		assertEquals("Test bouton [Sauver et continuer]", PageCritere.critere_selection_titre_tableau.getText());
+		//verification de l'enregistrement dans le tableau [Retour page d'administration des critères]
+		//assertEquals("Types de critères Liste", PageCritere.critere_titre.getText()); marche pas retourne texte []		
+		WebElement titre_tableau = driver.findElement(By.xpath("//div[@class='clickable-rows z-grid']//span[@title='"+nom_critere+"']"));
+		assertEquals("Test bouton [Sauver et continuer]", titre_tableau.getText());
+		//assertEquals("Test bouton [Sauver et continuer]", PageCritere.critere_selection_titre_tableau.getText()); obsolète
+		
+		// [Modifier un critère - accès formulaire de modification - Colonne "Opération"]
 		PageCritere.critere_modification_titre_tableau.click();
+		//assertEquals("Modifier Type de critère: Test bouton [Sauver et continuer]", PageCreerCritere.critere_titre.getText()); marche pas retourne texte []		
 		
+		// [Modifier un critère -  Bouton [Annuler] ]
+		//passage inutile => test de la fonction suivante
+		// [Modifier un critère - modification du nom]			 
+		OutilTechnique.remplirChampTexte(PageCreerCritere.champs_critere_nom, nom_critere2);
+		PageCreerCritere.clicBtnSauvegarderContinuer(driver);		
+		WebElement titre_tableau2 = driver.findElement(By.xpath("//div[@class='message_INFO']//span[contains(text(),'"+nom_critere2+"')]"));			
+		assertEquals("Type de critère \"Test bouton [Sauver et continuer] 2\" enregistré", titre_tableau2.getText());
 		
-		
-		
-		/* Suppression
-		 
-		PageCritere.critere_supression_titre_tableau.click();
+		//[Retour page d'administration des critères ]
+		PageCritere = PageCreerCritere.clicBtnAnnuler(driver);	
+		Thread.sleep(1000);
+		WebElement titre_tableau2bis = driver.findElement(By.xpath("//div[@class='clickable-rows z-grid']//span[contains(text(),'"+nom_critere2+"')]"));
+		assertEquals("Test bouton [Sauver et continuer] 2", titre_tableau2bis.getText());
+						
+		//Supprimer un critère - Bouton [Annuler] 
+		WebElement titre_tableau2suppr = driver.findElement(By.xpath("//div[@class='clickable-rows z-grid']//span[contains(text(),'"+nom_critere2+"')]//ancestor::tr//span[@title='Supprimer']"));
+		titre_tableau2suppr.click();		
+		PageCritere.critere_annuler_supression.click();
+		//[Supprimer un critère - Pop-up de confirmation]		
+		titre_tableau2suppr.click();		
 		PageCritere.critere_valider_supression.click();
 		
-		*/
+				
 		
+		//div[@class='clickable-rows z-grid']//span[@title='Test bouton [Sauver et continuer] 2']
 		
-		
-		
+		//div[@class='clickable-rows z-grid']//span[contains(text(),'Test bouton [Sauver et continuer] 2']
 	
-		
-		
-		
-		
-		
-		
-		
-		
-		
+				
 	}
 
 
