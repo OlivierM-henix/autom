@@ -42,16 +42,20 @@ public abstract class PageAbstract {
 			Thread.sleep(200);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+<<<<<<< HEAD
+		}		
+
+		WebElement a = driver.findElement(By.xpath("//a[@class='z-menu-item-cnt'][contains(text(),'"+btn+"')]"));		
+		System.out.println("selection de l'onglet : "+ogl);
+=======
 		}
+>>>>>>> a4d2aa039c87453952ce99bbf37cecc3199c0b6c
 		
 		try {Thread.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
 		
 		WebElement c = driver.findElement(By.xpath("//a[@class='z-menu-item-cnt'][contains(text(),\""+btn+"\")]"));
 		System.out.println("selection du sous-menu : "+btn);
 		c.click();
-
-		//        return PageFactory.initElements(driver, PageAbstract.class);
-
 	} // PAR EXEMPLE : selectionnerMenu(driver,"Ressources","Machines");
 	
 	
