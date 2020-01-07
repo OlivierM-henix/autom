@@ -111,8 +111,9 @@ public class FQU_01 extends PageAbstract{
 		pageEditerFormulaire.lgn_nom.click();
 		
 		assertTrue(OutilTechnique.obtenir_cellule_i_j(driver, xpath_tableau_formulaire, 1,2).getText().equals("1"));
-		assertTrue(OutilTechnique.obtenir_cellule_i_j(driver, xpath_tableau_formulaire, 2,2).getText().equals("2"));
-		assertTrue(OutilTechnique.obtenir_champ_i_j(driver, xpath_tableau_formulaire, 2,3).getAttribute("value").equals("20,00"));
+		Thread.sleep(2000);
+		assertTrue(driver.findElement(By.xpath(xpath_tableau_formulaire+"/tbody[2]/tr[2]/td[2]//span")).getText().equals("2"));
+		assertTrue(OutilTechnique.obtenir_champ_i_j(driver, xpath_tableau_formulaire, 2,3).getAttribute("value").equals("40,00"));
 		
 	}
 }
