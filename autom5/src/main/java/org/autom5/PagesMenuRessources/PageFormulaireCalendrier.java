@@ -20,7 +20,7 @@ public class PageFormulaireCalendrier {
 	public
 	WebElement btn_annuler;	
 	
-	@FindBy (xpath="//span[@class='z-label'][text()='Nom']/ancestor::tr//input[@class='z-textbox']")
+	@FindBy (xpath="//span[@class='z-label'][text()='Nom']/ancestor::tr//input[contains(@class, 'z-textbox')]")
 	public
 	WebElement champs_calendrier_nom;
 	
@@ -28,11 +28,11 @@ public class PageFormulaireCalendrier {
 	public
 	WebElement type_calendrier;
 	
-	@FindBy (xpath="//div[@class='message_WARNING']//span[text()='Calendrier - Test 1 existe déjà']")
+	@FindBy (xpath="//div[@class='message_WARNING']//span[@class='z-label']")
 	public
-	WebElement erreur1_calendrier;
+	WebElement erreur_calendrier;
 	
-	@FindBy (xpath="//div[@class='message_INFO']//span[text()='Calendrier - Test Calendrier Dérivé']")
+	@FindBy (xpath="//div[@class='message_INFO']//span[@class='z-label']")
 	public
 	WebElement validation_calendrier;
 	

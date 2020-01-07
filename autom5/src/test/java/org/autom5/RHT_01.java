@@ -16,7 +16,7 @@ public class RHT_01 extends TestCase {
 	ENavigateur chrome;
 	public void testApp(){
     	driver = OutilTechnique.choisirNavigateur(ENavigateur.chrome);
-		driver.get("http://localhost:8080/libreplan");
+		driver.get("http://localhost:8090/libreplan");
 		
 		PageCnx pge = PageFactory.initElements(driver, PageCnx.class);
 		pge.sidentifier("admin","admin",driver);
