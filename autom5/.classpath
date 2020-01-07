@@ -23,6 +23,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/AxelManderau/Downloads/jar_files/assertj-core-3.13.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
