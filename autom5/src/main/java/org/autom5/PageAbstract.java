@@ -1,7 +1,5 @@
 package org.autom5;
 
-import static org.junit.Assert.assertFalse;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -18,7 +16,7 @@ import org.openqa.selenium.support.FindBy;
 
 public abstract class PageAbstract {
 
-	@FindBy(xpath="//a[text()=\"[DÃ©connexion]\"]")
+	@FindBy(xpath="//a[text()=\"[Déconnexion]\"]")
 	WebElement btn_deconnexion;
 
 	@FindBy(xpath="//td[@class=\"usuario\"][2]")

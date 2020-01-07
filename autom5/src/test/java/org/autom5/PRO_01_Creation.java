@@ -1,6 +1,5 @@
 package org.autom5;
 
-import static org.assertj.core.api.Assertions.assertThat;  // main one
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -55,18 +54,22 @@ public class PRO_01_Creation extends PageAbstract {
 		//Accéder au formulaire de création d'un projet
 		//Cliquer sur l'icône "Créer un nouveau projet" (1ère icône "+" située en dessous du logo "LibrePlan")
 		driver.findElement(By.xpath("//span[@class='planner-icon z-button']//img")).click();
+		System.out.println("popup affichée");
 		PageCreerProjet pageCreerProjet = PageFactory.initElements(driver, PageCreerProjet.class);
-
-		OutilTechnique.remplirChampTexte(pageCreerProjet.input_codeprojet, "PRJTEST001");
+		pageCreerProjet.input_nomprojet.sendKeys("PRJTEST001");
+		
+		
+		//OutilTechnique.remplirChampTexte(pageCreerProjet.input_nomprojet, "PRJTEST001");
+		
 		pageCreerProjet.checkbox_codeprojet.click();
-		assertTrue(pageCreerProjet.checkbox.equals(null));
+		assertTrue(pageCreerProjet.checkbox_codeprojet.equals(null));
 
 		//vérifier que le champ "nom" est présent
 		assertEquals("Nom", pageCreerProjet.label_nomprojet.getText());
 		//log.info 	
 
 		//vérifier que le champ "nom" du projet est vide par défaut
-		assertThat(pageCreerProjet.input_nomprojet.getText().isEmpty());
+		assertTrue(pageCreerProjet.input_nomprojet.getText().isEmpty());
 		// log 			
 		pageCreerProjet.input_nomprojet.sendKeys("PROJET_TEST1");
 
@@ -75,10 +78,10 @@ public class PRO_01_Creation extends PageAbstract {
 		// log 
 
 		//vérifier que le log le champ "modele" est vide par défaut 
-		assertThat(pageCreerProjet.input_modeleprojet.getText().isEmpty());
+		assertTrue(pageCreerProjet.input_modeleprojet.getText().isEmpty());
 
 		// Vérifier que le champ "modele" est une liste deroulante
-		assertThat(pageCreerProjet.input_modeleprojet.getAttribute("class").contains("bandbox"));
+		assertTrue(pageCreerProjet.input_modeleprojet.getAttribute("class").contains("bandbox"));
 		//("le champ modele est une bandbox/liste déroulante", PageCreerProjet.input_modeleprojet.getAttribute("class") );	
 
 		//vérifier que le label code est présent
@@ -93,11 +96,11 @@ public class PRO_01_Creation extends PageAbstract {
 		assertEquals("Echeance", pageCreerProjet.label_dateecheance_projet.getText());
 		// log 
 		// Verifier que la date d'éechance du projet est vide par défaut
-		assertThat(pageCreerProjet.input_dateecheanceprojet).isNull();;
+		assertTrue(pageCreerProjet.input_dateecheanceprojet.getText().isEmpty());;
 		// log
 		assertEquals("Client", pageCreerProjet.label_clientprojet.getText());
 		// log champ client existe
-		assertThat(pageCreerProjet.input_clientprojet).isNull();
+		assertTrue(pageCreerProjet.input_clientprojet.getText().isEmpty());
 		// champ client vide par défaut
 		assertEquals("Calendrier", pageCreerProjet.label_calendrierprojet.getText());
 		// log 	
@@ -114,16 +117,16 @@ public class PRO_01_Creation extends PageAbstract {
 
 		OutilTechnique.remplirChampTexte(pageCreerProjet.input_nomprojet, "PROJET_TEST1");
 		pageCreerProjet.checkbox_codeprojet.click();
-		assertTrue(pageCreerProjet.checkbox.equals(null));
+		assertTrue(pageCreerProjet.checkbox_codeprojet.equals(null));
 		OutilTechnique.remplirChampTexte(pageCreerProjet.input_codeprojet, "PRJTEST001");
 
 		//- Date de début : Sélectionner dans le calendrier date J+5 
-		pageCreerProjet.datedebutprojet.click();
+		pageCreerProjet.bouton_datedebutprojet.click();
 		//OutilTechnique.formatdate();
 		System.out.println(OutilTechnique.formatdate());
 		CalendarCalcul.getTargetDateMonthAndYear_debutprojet(5);
 
-		pageCreerProjet.datedebutprojet.click();
+		pageCreerProjet.bouton_datedebutprojet.click();
 
 		//- Date échéance: Sélectionner dans le calendrier date J + 15 
 		pageCreerProjet.bouton_dateecheanceprojet.click();
