@@ -5,8 +5,12 @@ import java.util.Calendar;
 public class CalendarCalcul {
 
 
-		int targetDay = 0, targetMonth = 0, targetYear = 0;
-		int currentDay = 0, currentMonth = 0, currentYear = 0;
+		static int targetDay = 0;
+		static int targetMonth = 0;
+		static int targetYear = 0;
+		static int currentDay = 0;
+		static int currentMonth = 0;
+		static int currentYear = 0;
 		int nbjoursavantdebut;
 		int nbjoursavantecheance;
 		String currentdatemonthandyear;
@@ -25,16 +29,17 @@ public class CalendarCalcul {
 			return (currentdatemonthandyear);
 		}
 
-		public String getTargetDateMonthAndYear_debutprojet(int nbjoursavantdebut) {
+		public static String getTargetDateMonthAndYear_debutprojet(int nbjoursavantdebut) {
 			targetDay = currentDay + nbjoursavantdebut;
 			targetMonth = currentMonth;
 			targetYear = currentYear;
+			//String targetdatedebut=targetDay+"/"+targetMonth+"/"+targetYear;
 			String targetdatedebut=targetDay+"/"+targetMonth+"/"+targetYear;
 			System.out.println(targetdatedebut);
 			return (targetdatedebut);
 		}
 
-		public String getTargetDateMonthAndYear_echeanceprojet(int nbjoursavantecheance){
+		public static String getTargetDateMonthAndYear_echeanceprojet(int nbjoursavantecheance){
 			targetDay = currentDay + nbjoursavantecheance;
 			targetMonth = currentMonth;
 			targetYear = currentYear;
