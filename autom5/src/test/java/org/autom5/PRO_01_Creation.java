@@ -1,34 +1,14 @@
 package org.autom5;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 import static org.assertj.core.api.Assertions.assertThat;  // main one
-import static org.assertj.core.api.Assertions.atIndex; // for List assertions
-import static org.assertj.core.api.Assertions.entry;  // for Map assertions
-import static org.assertj.core.api.Assertions.tuple; // when extracting several properties at once
-import static org.assertj.core.api.Assertions.fail; // use when writing exception tests
-import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown; // idem
-import static org.assertj.core.api.Assertions.filter; // for Iterable/Array assertions
-import static org.assertj.core.api.Assertions.offset; // for floating number assertions
-import static org.assertj.core.api.Assertions.anyOf; // use with Condition
-import static org.assertj.core.api.Assertions.contentOf; // use with File assertions
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import org.assertj.core.api.Assert;
-import org.assertj.core.api.Assertions;
-import static org.assertj.core.api.Assertions.*;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import org.autom5.PagesMenuCalendrier.PageCreerProjet;
 import org.autom5.PagesMenuCalendrier.PageDetailProjet;
-import org.autom5.PagesMenuRessources.PageCreerCritere;
-import org.autom5.PagesMenuRessources.PageCritere;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -49,6 +29,9 @@ public class PRO_01_Creation extends PageAbstract {
 
 	@Test
 	public void test() throws InterruptedException {
+
+
+		//********************* STEP 1 *********************
 		//AccÃ©der Ã  lâ€™application et se connecter en tant que admin/admin
 		driver.get("http://localhost:8081/libreplan/");	
 		PageCnx pageCnx = PageFactory.initElements(driver, PageCnx.class);
@@ -65,116 +48,102 @@ public class PRO_01_Creation extends PageAbstract {
 		//pageIndex.selectionnerMenu(driver, "Ressources", "CritÃ¨re");
 		//PageFormulaireQualite pageFormulaireQualite = PageFactory.initElements(driver, PageFormulaireQualite.class);
 
-		PageIndex pageindex = PageFactory.initElements(driver, PageIndex.class);
+		//PageIndex pageIndex = PageFactory.initElements(driver, PageIndex.class);
 
+
+		//********************* STEP 2 *********************
 		//Accéder au formulaire de création d'un projet
 		//Cliquer sur l'icône "Créer un nouveau projet" (1ère icône "+" située en dessous du logo "LibrePlan")
 		driver.findElement(By.xpath("//span[@class='planner-icon z-button']//img")).click();
-		PageCreerProjet PageCreerProjet = PageFactory.initElements(driver, PageCreerProjet.class);
+		PageCreerProjet pageCreerProjet = PageFactory.initElements(driver, PageCreerProjet.class);
+
+		OutilTechnique.remplirChampTexte(pageCreerProjet.input_codeprojet, "PRJTEST001");
+		pageCreerProjet.checkbox_codeprojet.click();
+		assertTrue(pageCreerProjet.checkbox.equals(null));
 
 		//vérifier que le champ "nom" est présent
-		assertEquals("Nom", PageCreerProjet.label_nomprojet.getText());
-		//log 	
+		assertEquals("Nom", pageCreerProjet.label_nomprojet.getText());
+		//log.info 	
 
 		//vérifier que le champ "nom" du projet est vide par défaut
-		assertThat(PageCreerProjet.input_nomprojet.getText().isEmpty());
+		assertThat(pageCreerProjet.input_nomprojet.getText().isEmpty());
 		// log 			
+		pageCreerProjet.input_nomprojet.sendKeys("PROJET_TEST1");
 
 		//Vérifier que le champ "modele" est présent
-		assertEquals("Modele", PageCreerProjet.label_modeleprojet.getText());	
+		assertEquals("Modele", pageCreerProjet.label_modeleprojet.getText());	
 		// log 
 
 		//vérifier que le log le champ "modele" est vide par défaut 
-		assertThat(PageCreerProjet.input_modeleprojet.getText().isEmpty());
+		assertThat(pageCreerProjet.input_modeleprojet.getText().isEmpty());
 
 		// Vérifier que le champ "modele" est une liste deroulante
-		assertThat(PageCreerProjet.input_modeleprojet.getAttribute("class").contains("bandbox"));
+		assertThat(pageCreerProjet.input_modeleprojet.getAttribute("class").contains("bandbox"));
 		//("le champ modele est une bandbox/liste déroulante", PageCreerProjet.input_modeleprojet.getAttribute("class") );	
 
 		//vérifier que le label code est présent
-		assertEquals("Code", PageCreerProjet.label_codeprojet.getText());
+		assertEquals("Code", pageCreerProjet.label_codeprojet.getText());
 		// log 
-		
 		// Vérifier que date de début est présent
-		assertEquals("Date de debut", PageCreerProjet.label_datedebut_projet.getText());
+		assertEquals("Date de debut", pageCreerProjet.label_datedebut_projet.getText());
 		// log 
-		
-		
-		assertEquals(OutilTechnique.formatdate() , PageCreerProjet.datedebut_projet.getText());
+		assertEquals(OutilTechnique.formatdate() , pageCreerProjet.datedebut_projet.getText());
 		//la date du jour est égale au champ datedebut => la valeur par défaut est la date du jour
-
 		// Vérifier que label échéance est affiché (atttention= is displayed)
-		assertEquals("Echeance", PageCreerProjet.label_dateecheance_projet.getText());
+		assertEquals("Echeance", pageCreerProjet.label_dateecheance_projet.getText());
 		// log 
-
 		// Verifier que la date d'éechance du projet est vide par défaut
-		assertThat(PageCreerProjet.input_dateecheanceprojet).isNull();;
+		assertThat(pageCreerProjet.input_dateecheanceprojet).isNull();;
 		// log
-
-
-		assertEquals("Client", PageCreerProjet.label_clientprojet.getText());
+		assertEquals("Client", pageCreerProjet.label_clientprojet.getText());
 		// log champ client existe
-		assertThat(PageCreerProjet.input_clientprojet).isNull();
+		assertThat(pageCreerProjet.input_clientprojet).isNull();
 		// champ client vide par défaut
-
-
-
-		assertEquals("Calendrier", PageCreerProjet.label_calendrierprojet.getText());
+		assertEquals("Calendrier", pageCreerProjet.label_calendrierprojet.getText());
 		// log 	
-		assertEquals("Default", PageCreerProjet.combobox_calendrierprojet.getText());
-		// log 	
-
-
-
-
-		assertEquals("Accepter", PageCreerProjet.bouton_accepterprojet.getText());
+		assertEquals("Default", pageCreerProjet.combobox_calendrierprojet.getText());
+		// log 
+		assertEquals("Accepter", pageCreerProjet.bouton_accepterprojet.getText());
 		// log Bouton Accepter est présent
-
-
-		assertEquals("Annuler", PageCreerProjet.bouton_annulerprojet.getText());
+		assertEquals("Annuler", pageCreerProjet.bouton_annulerprojet.getText());
 		// log Bouton Annuler est présent
 
-
-
+		//********************* STEP 3 *********************
 		//Creation du projet
 		// Initialisation de la Page : verification des champs dans le tableau et clic sur le bouton "Continuer"
 
-		OutilTechnique.remplirChampTexte(PageCreerProjet.input_nomprojet, "PROJET_TEST1");
-		PageCreerProjet.checkbox_codeprojet.click();
-		assertTrue(PageCreerProjet.checkbox.equals(null));
-		OutilTechnique.remplirChampTexte(PageCreerProjet.input_codeprojet, "PRJTEST001");
+		OutilTechnique.remplirChampTexte(pageCreerProjet.input_nomprojet, "PROJET_TEST1");
+		pageCreerProjet.checkbox_codeprojet.click();
+		assertTrue(pageCreerProjet.checkbox.equals(null));
+		OutilTechnique.remplirChampTexte(pageCreerProjet.input_codeprojet, "PRJTEST001");
 
 		//- Date de début : Sélectionner dans le calendrier date J+5 
-		PageCreerProjet.datedebutprojet.click();
+		pageCreerProjet.datedebutprojet.click();
 		//OutilTechnique.formatdate();
 		System.out.println(OutilTechnique.formatdate());
-		
 		CalendarCalcul.getTargetDateMonthAndYear_debutprojet(5);
-		
-		
-		
-		
-		PageCreerProjet.datedebutprojet.click();
+
+		pageCreerProjet.datedebutprojet.click();
 
 		//- Date échéance: Sélectionner dans le calendrier date J + 15 
-		PageCreerProjet.bouton_dateecheanceprojet.click();
-		
-		
+		pageCreerProjet.bouton_dateecheanceprojet.click();
+		CalendarCalcul.getTargetDateMonthAndYear_echeanceprojet(15);
+
 		//Cliquer sur le bouton accepter
-		PageCreerProjet.bouton_accepterprojet.click();
-		
-				//Le projet est créé : 
+		pageCreerProjet.bouton_accepterprojet.click();
+
+		//Le projet est créé : 
 		//- dans le menu vertical à gauche de la page -> menu affiché = "Détail du projet" 
 		assertTrue(pageIndex.detailprojet.isDisplayed());
 
 		//- dans le menu horizontal -> onglet affiché = "WBS (tâches)" 
 		assertTrue(pageIndex.ong_WBStaches.isDisplayed());
 
-
+		//********************* STEP 4 *********************
 		//Vérifier les onglets - menu vertical : 
 		//Vérifier le nom et la présence des onglets présent dans le menu vertical. 
 
-/*//Les onglets du menu vertical sont dans l'ordre suivant : 
+		/*//Les onglets du menu vertical sont dans l'ordre suivant : 
 		<ul> 
 		 <li>Planification de projet</li> 
 		 <li>Détail du projet</li> 
@@ -183,31 +152,39 @@ public class PRO_01_Creation extends PageAbstract {
 		 <li>Tableau de bord</li> 
 		</ul>*/
 
-			//creer une liste en trouvant le xpath sur le site
+		//creer une liste en trouvant le xpath sur le site
 		//comparer cette liste a une liste faite manuellement
-		
-		
-		
-		
-		
-		
+
+
+
+		//********************* STEP 5 *********************	
+		//"Vérifier les onglets - menu horizontal : 
+
+		//Vérifier le nom et la présence des onglets présent dans le menu horizontal. 
+		//"Les onglets du menu horizontal sont dans l'ordre suivant : 
+		//<ul> 
+		//<li>WBS (tâches)</li> 
+		//<li>Données générales</li> 
+		//<li>Coût</li> 
+		//<li>Avancement</li> 
+		//<li>Libellés</li> 
+		//<li>Exigence de critère</li> 
+		//<li>Matériels</li> 
+		//<li>Formulaire qualité des tâches</li> 
+		//<li>Autorisation</li> 
+		//</ul>"
+
+
+
+
+		//********************* STEP 6 *********************
 		//Bouton d'enregistrement et d'annulation de l'édition du projet </strong>: 
 		//Vérifier la présence des boutons d'enregistrement et d'annulation de l'édition du projet. 
 		assertTrue("le bouton enregistrer n'est pas affiché",PageDetailProjet.icone_enregistrer.isDisplayed());
-		
-		
-		
 		assertTrue("le bouton annuler n'est pas affiché",PageDetailProjet.icone_annuler.isDisplayed());
-		
-		
-		
-		
+
+
 		//"Présence au-dessus du menu vertical des boutons avec les caractéristiques suivantes : 
-
-
-
-
-
 		/*- Bouton d'enregistrement : 
 		<ul> 
 		 <li>icône représentant une disquette</li> 
@@ -228,27 +205,108 @@ public class PRO_01_Creation extends PageAbstract {
 		 * ressources</li> <li>Allocation avancée</li> <li>Tableau de bord</li> </ul>
 		 */
 
+
+
 		//********************* STEP 7 *********************
 		//"Utilisation du bouton d'annulation de l'édition du projet (1/4) :  
 		//Cliquer sur le bouton d'annulation de l'édition du projet."
 		PageDetailProjet.icone_annuler.click();
-		
 
-		
 		//"Affichage d'une pop-up ""Confirmer la fenêtre de sortie"" contenant : 
 		//- le message suivant : 
 		//""Les modifications non enregistrées seront perdues. 
 		//Etes-vous sûr ?"" 
 		assertTrue("la popup d'annulation n'est pas affichée", PageDetailProjet.popupdiv_annulation.isDisplayed());
 		assertEquals("Les modifications non enregistrées seront perdues. Êtes-vous sûr ?", PageDetailProjet.message_popupdiv_annulation);
-		
+
 		//- les boutons [OK] et [Annuler] 
 		assertTrue("le bouton [OK] de la popup d'annulation n'est pas affiché", PageDetailProjet.popupdiv_boutonok.isDisplayed());
 		assertTrue("le bouton [Annuler] de la popup d'annulation n'est pas affiché", PageDetailProjet.popupdiv_boutonannuler.isDisplayed());
 
 
+		//********************* STEP 8 *********************
+		//"Utilisation du bouton d'annulation de l'édition du projet (2/4) : 
+
+		//Dans la pop-up, cliquer sur le bouton [Annuler]. 
+		PageDetailProjet.popupdiv_annulation.click();
+
+		//"Fermeture de la pop-up ""Confirmer la fenêtre de sortie"" 
+		assertFalse(PageDetailProjet.popupdiv_annulation.isDisplayed());
+
+		//Dans le menu vertical à gauche de la page -> menu affiché = ""Détail du projet""  
+
+		//Dans le menu horizontal -> onglet affiché = ""WBS (tâches)"" 
+
+
+
+		//********************* STEP 9 *********************
+		//"Utilisation du bouton d'annulation de l'édition du projet (3/4) : 
+
+		//Cliquer sur le bouton d'annulation de l'édition du projet."
+
+
+
+		//"Affichage d'une pop-up ""Confirmer la fenêtre de sortie"" contenant : 
+
+		//- le message suivant : 
+		//""Les modifications non enregistrées seront perdues. 
+		//Etes-vous sûr ?"" 
+
+		//- les boutons [OK] et [Annuler] 
+
+
+		//********************* STEP 10 *********************
+		//"Utilisation du bouton d'annulation de l'édition du projet (4/4) : 
+
+		//Dans la pop-up, cliquer sur le bouton [OK]. 
+
+
+
+		//"Fermeture de la pop-up ""Confirmer la fenêtre de sortie"" 
+
+		//Dans le menu vertical à gauche de la page -> menu affiché = ""Planification des projets"" 
+
+		//Dans le menu horizontal -> absence de menu horizontal 
+
+
+
+
+		//********************* STEP 11 *********************
+		//"Vérifier la création du projet : 
+
+		//Passer la souris sur l'onglet ""Calendrier"" puis dans le sous-menu qui s'affiche, cliquer sur l'item ""Projets"". 
+
+
+
+		//"La liste est affichée à droite du menu vertical, le projet créé y est présent. 
+
+		//Dans le menu vertical à gauche de la page -> menu affiché = ""Liste des projets"". 
+
+
+
+		//********************* STEP 12 *********************
+		//"Vérifier les informations affichées pour le projet : 
+
+		//Vérifier la conformité des informations affichées pour le projet dans la liste affichée. 
+
+
+		//"Dans la liste des projets, pour le projet créé les informations affichées dans les colonnes du tableau sont les suivantes : 
+
+		//- Nom : PROJET_TEST1 
+		//- Code : PRJTEST001 
+		//- Date de début : date J+5 
+		//- Echéance : date J+15 
+		//- Client : champ non renseigné 
+		//- Budget total : 0 € 
+		//- Heures : 0 
+		//- Etat : PRE-VENTES 
+		//- Opérations : 4 icones : modifier, supprimer, voir la prévision, créer un modèle 
 
 	}
-*/
+
+
+
+
+
 }
-}
+
