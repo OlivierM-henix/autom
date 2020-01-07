@@ -16,7 +16,7 @@ import org.openqa.selenium.support.FindBy;
 
 public abstract class PageAbstract {
 
-	@FindBy(xpath="//a[text()=\"[Déconnexion]\"]")
+	@FindBy(xpath="//a[text()=\"[DÃ©connexion]\"]")
 	WebElement btn_deconnexion;
 
 	@FindBy(xpath="//td[@class=\"usuario\"][2]")
