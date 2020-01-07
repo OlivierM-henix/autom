@@ -31,8 +31,10 @@ public class FQU_01 extends PageAbstract{
 	@After
 	public void fermerNavigateur() throws Exception {
 		driver.quit();
-		BDDConnexion.deleteAllData(".src/test/java/org/autom5/resources/FlatXmlDataSet/nettoyage.xml");
+		BDDConnexion.deleteAllData("src/test/java/org/autom5/resources/FlatXmlDataSet/nettoyage_quality_form_items.xml");
+		BDDConnexion.deleteAllData("src/test/java/org/autom5/resources/FlatXmlDataSet/nettoyage_quality_form.xml");
 	}
+
 
 	@Test
 	public void test() throws InterruptedException {
@@ -117,6 +119,6 @@ public class FQU_01 extends PageAbstract{
 		//PAS 7
 		pageEditerFormulaire.btn_sauver_continuer.click();
 		Thread.sleep(5000);
-//		assertTrue(driver.findElement(By.xpath("//img[@src=\"/libreplan/common/img/ico_ok.png\"]")).isDisplayed());
+		assertTrue(driver.findElement(By.xpath("//img[@src=\"/libreplan/common/img/ico_ok.png\"]")).isDisplayed());
 	}
 }

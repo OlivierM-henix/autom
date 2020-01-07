@@ -25,8 +25,10 @@ public class canevasTest extends PageAbstract{
 	}
 
 	@After
-	public void fermerNavigateur () {
+	public void fermerNavigateur() throws Exception {
 		driver.quit();
+		BDDConnexion.deleteAllData("src/test/java/org/autom5/resources/FlatXmlDataSet/nettoyage_quality_form_items.xml");
+		BDDConnexion.deleteAllData("src/test/java/org/autom5/resources/FlatXmlDataSet/nettoyage_quality_form.xml");
 	}
 
 

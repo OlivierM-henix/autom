@@ -12,7 +12,7 @@ import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 
 public class BDDConnexion {
-	private static final String DRIVER = "com.postgresql.jdbc.Driver";
+	private static final String DRIVER = "org.postgresql.Driver";
 	private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/libreplan";
 	private static final String USER = "libreplan";
 	private static final String PASSWORD = "libreplan";
