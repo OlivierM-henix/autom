@@ -65,6 +65,11 @@ public class PageCritere extends PageAbstract {
 	//methode verif disparation pop up en try and catch
 	
 	
+	public WebElement SelectionnerCritere(WebDriver driver, String nom_critere){		
+		WebElement critere_id = driver.findElement(By.xpath("//div[@class='z-dottree']//span[contains (@class, 'z-label') and text() = '" + nom_critere + "']"));
+		return critere_id;
+		}	
+	
 	
 	public PageCreerCritere clicBtnCreer(WebDriver driver) {
 		btn_creer.click();

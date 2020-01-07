@@ -14,15 +14,14 @@ public class PageIndex extends PageAbstract {
 	WebElement MenuHorizontal;	
 	//div[@class='z-tabs-header z-tabs-header-scroll']//ul[@class='z-tabs-cnt']	
 
-	@FindBy (xpath="//td[contains(text(),'Détail du projet')]") public
+	@FindBy (xpath="//td[contains(text(),'Détail du projet')]") 
 	WebElement detailprojet;	
-
 
 	//span[contains(text(),'WBS (tâches)')]
 	@FindBy (xpath="//span[contains(text(),'WBS (tâches)')]") public 
 	WebElement ong_WBStaches;	
 
-	@FindBy (xpath="//span[@class='planner-icon z-button']//img") public
+	@FindBy (xpath="//img[contains(@src,'ico_add.png')]") 
 	WebElement btn_creerprojet;
 
 	public PageCreerProjet creerprojet (WebDriver driver) {

@@ -1,11 +1,15 @@
 package org.autom5.PagesMenuRessources;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class PageCalendrier {
+	
+	
 	
 	@FindBy (xpath="//span[@class='create-button global-action z-button']")
 	public
@@ -31,7 +35,7 @@ public class PageCalendrier {
 	public
 	WebElement calendrier_titre;
 	
-	@FindBy (xpath="//div[@class='z-dottree']//span[@class][text()='Calendrier - Test 1']") 
+	@FindBy (xpath="//div[@class='z-dottree']//span[contains (@class, 'z-label') and text() = 'Calendrier - Test 1']") 
 	public
 	WebElement calendrier_tableau_test1;
 	
@@ -58,5 +62,27 @@ public class PageCalendrier {
 		return PageFactory.initElements(driver, PageFormulaireCalendrier.class);
 	}
 	
+	public WebElement SelectionnerCalendrier(WebDriver driver, String nom_calendrier){		
+		WebElement calendrier_id = driver.findElement(By.xpath("//div[@class='z-dottree']//span[contains (@class, 'z-label') and text() = '" + nom_calendrier + "']"));
+		return calendrier_id;
+		}	
+	
+	public boolean RetryingGetText(WebDriver driver, WebElement calendrier_id) {
+        boolean result = false;
+        int essais = 0;
+        while(essais < 2) {
+            try {
+            	calendrier_id.getText();
+                result = true;
+                break;
+            } catch(StaleElementReferenceException e) {
+            }
+            essais++;
+        }
+        return result;
+}
+	
 
 }
+
+//div[@class='z-dottree']//span[contains (text(), 'Calendrier - Test 1')]
