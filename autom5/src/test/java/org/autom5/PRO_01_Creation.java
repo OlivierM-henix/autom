@@ -146,15 +146,24 @@ public class PRO_01_Creation extends PageAbstract {
 
 		//- Date de début : Sélectionner dans le calendrier date J+5 
 		PageCreerProjet.datedebutprojet.click();
-		OutilTechnique.formatdate();
+		//OutilTechnique.formatdate();
 		System.out.println(OutilTechnique.formatdate());
+		
+		CalendarCalcul.getTargetDateMonthAndYear_debutprojet(5);
+		
+		
+		
 		
 		PageCreerProjet.datedebutprojet.click();
 
 		//- Date échéance: Sélectionner dans le calendrier date J + 15 
 		PageCreerProjet.bouton_dateecheanceprojet.click();
-
-		//Le projet est créé : 
+		
+		
+		//Cliquer sur le bouton accepter
+		PageCreerProjet.bouton_accepterprojet.click();
+		
+				//Le projet est créé : 
 		//- dans le menu vertical à gauche de la page -> menu affiché = "Détail du projet" 
 		assertTrue(pageIndex.detailprojet.isDisplayed());
 
@@ -165,20 +174,35 @@ public class PRO_01_Creation extends PageAbstract {
 		//Vérifier les onglets - menu vertical : 
 		//Vérifier le nom et la présence des onglets présent dans le menu vertical. 
 
+/*//Les onglets du menu vertical sont dans l'ordre suivant : 
+		<ul> 
+		 <li>Planification de projet</li> 
+		 <li>Détail du projet</li> 
+		 <li>Chargement des ressources</li> 
+		 <li>Allocation avancée</li> 
+		 <li>Tableau de bord</li> 
+		</ul>*/
 
-
+			//creer une liste en trouvant le xpath sur le site
+		//comparer cette liste a une liste faite manuellement
+		
+		
+		
+		
+		
+		
 		//Bouton d'enregistrement et d'annulation de l'édition du projet </strong>: 
-
 		//Vérifier la présence des boutons d'enregistrement et d'annulation de l'édition du projet. 
+		assertTrue("le bouton enregistrer n'est pas affiché",PageDetailProjet.icone_enregistrer.isDisplayed());
+		
+		
+		
+		assertTrue("le bouton annuler n'est pas affiché",PageDetailProjet.icone_annuler.isDisplayed());
+		
+		
+		
+		
 		//"Présence au-dessus du menu vertical des boutons avec les caractéristiques suivantes : 
-
-
-		//assertTrue(PageDetailProjet.
-		//PageCreerProjet.
-
-		//PageDetailProjet.survol_element(b).click();
-		//AssertThat(aaa).
-
 
 
 
@@ -204,42 +228,25 @@ public class PRO_01_Creation extends PageAbstract {
 		 * ressources</li> <li>Allocation avancée</li> <li>Tableau de bord</li> </ul>
 		 */
 
-	//	AssertThat(MenuHorizontal).
+		//********************* STEP 7 *********************
+		//"Utilisation du bouton d'annulation de l'édition du projet (1/4) :  
+		//Cliquer sur le bouton d'annulation de l'édition du projet."
+		PageDetailProjet.icone_annuler.click();
+		
+
+		
+		//"Affichage d'une pop-up ""Confirmer la fenêtre de sortie"" contenant : 
+		//- le message suivant : 
+		//""Les modifications non enregistrées seront perdues. 
+		//Etes-vous sûr ?"" 
+		assertTrue("la popup d'annulation n'est pas affichée", PageDetailProjet.popupdiv_annulation.isDisplayed());
+		assertEquals("Les modifications non enregistrées seront perdues. Êtes-vous sûr ?", PageDetailProjet.message_popupdiv_annulation);
+		
+		//- les boutons [OK] et [Annuler] 
+		assertTrue("le bouton [OK] de la popup d'annulation n'est pas affiché", PageDetailProjet.popupdiv_boutonok.isDisplayed());
+		assertTrue("le bouton [Annuler] de la popup d'annulation n'est pas affiché", PageDetailProjet.popupdiv_boutonannuler.isDisplayed());
 
 
-
-
-
-
-
-
-		//Capture d'Ã©cran - Ouverture de PageCreerCritere : vÃ©rifier que les boutons et champs sont prÃ©sents dans la page
-		//assertTrue("le bouton Enregistrer n'existe pas", PageCreerCritere.btn_enregistrer.isDisplayed());
-		//assertTrue("le bouton Sauvegarder et continuer n'existe pas", PageCreerCritere.btn_sauvegarder_continuer.isDisplayed());
-		//assertTrue("le bouton Annuler n'existe pas", PageCreerCritere.btn_annuler.isDisplayed());
-		//assertEquals("Modifier", PageCreerCritere.creer_critere_modifier.getText());
-		//Capture d'Ã©cran - Capture pour le testeur de l'Ã©tat du tableau proposÃ©. A ajouter, les checkboxes qui doivent Ãªtre cochÃ©es par dÃ©faut
-
-		//OutilTechnique.remplirChampTexte(PageCreerCritere.champs_critere_nom, "CritÃ¨re - Test bouton [Annuler]");
-		//OutilTechnique.remplirChampTexte(PageCreerCritere.champs_critere_description, "CritÃ¨re - Test bouton [Annuler]");
-		//assertEquals("PARTICIPANT", PageCreerCritere.type_creer_critere.getText());		
-	/*	PageCritere = PageCreerCritere.clicBtnAnnuler(driver);		
-		assertFalse("CritÃ¨re - Test bouton [Annuler]", false);
-		//Capture d'Ã©cran - Test de la fonctionnalitÃ© annuler. Les modifications ne doivent pas Ãªtre enregistrÃ©es dans la PageCritere
-
-		PageCritere.clicBtnCreer(driver);
-		OutilTechnique.remplirChampTexte(PageCreerCritere.champs_critere_nom, "CritÃ¨re - Test bouton [Enregistrer]");
-		OutilTechnique.remplirChampTexte(PageCreerCritere.champs_critere_description, "CritÃ¨re - Test bouton [Enregistrer]");
-		PageCritere = PageCreerCritere.clicBtnEnregistrer(driver);
-		assertTrue("CritÃ¨re - Test bouton [Enregistrer]", true);
-		Thread.sleep(2000);
-
-		//Capture d'Ã©cran - Retour PageCritere : vÃ©rifier qu'aucune modification du tableau n'a Ã©tÃ© prise en compte
-		PageCreerCritere = PageCritere.clicBtnCreer(driver);
-		OutilTechnique.remplirChampTexte(PageCreerCritere.champs_critere_nom, "Test bouton [Sauver et continuer]");
-		OutilTechnique.remplirChampTexte(PageCreerCritere.champs_critere_description, "Test bouton [Sauver et continuer]");
-		PageCreerCritere.clicBtnSauvegarderContinuer(driver);
-		PageCritere = PageCreerCritere.clicBtnEnregistrer(driver);
 
 	}
 */

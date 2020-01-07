@@ -48,11 +48,8 @@ public class CRI_01_Creation {
 		assertTrue(pageIndex.btn_deconnexion.isEnabled());
 		assertEquals(pageIndex.txt_utilisateurConnecte.getText(),"utilisateur: admin");
 
-		// Se rendre sur la page à tester l'aide de la méthode selectionnerMenu de la PageAbstract: exemple avec Ressources / Formulaires Qualité
-		// Adapter les noms à votre page !!!
-		pageIndex.selectionnerMenu(driver, "Ressources", "Critère");
-		PageFormulaireQualite pageFormulaireQualite = PageFactory.initElements(driver, PageFormulaireQualite.class);
-		
+		// Se rendre sur la page à tester l'aide de la méthode selectionnerMenu de la PageAbstract: exemple avec Ressources / Formulaires Qualité		
+		pageIndex.selectionnerMenu(driver, "Ressources", "Critère");		
 		
 		// Initialisation de la PageCritere : verification des champs dans le tableau et clic sur le bouton "Continuer"
 		PageCritere PageCritere = PageFactory.initElements(driver, PageCritere.class);
