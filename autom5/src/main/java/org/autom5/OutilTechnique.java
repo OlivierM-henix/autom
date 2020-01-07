@@ -100,8 +100,16 @@ public class OutilTechnique {
 				.findElement(By.xpath("" + xpath_tableau + "/tbody[2]/tr[" + i + "]/td[" + j + "]//input"));
 		return champ_i_j;
 	}
+	
+	
+	
+	
+	
 }
 	
+
+
+
 	
 	// Verifier le chemin du dossier de stockage
 	// nommer la capture en fonction de son cas de test + fonctionnalit� ex:
