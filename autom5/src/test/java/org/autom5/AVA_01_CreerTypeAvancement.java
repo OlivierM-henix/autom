@@ -9,13 +9,11 @@ import junit.framework.TestCase;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.logging.log4j.LogManager;
 import org.autom5.OutilTechnique;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class AVA_01_CreerTypeAvancement extends TestCase {
 	WebDriver driver;
@@ -30,7 +28,7 @@ public class AVA_01_CreerTypeAvancement extends TestCase {
 	
 	@Test
 	public void testApp() throws IOException, InterruptedException{
-		Logger logger = LoggerFactory.getLogger("ERROR");
+		org.apache.logging.log4j.Logger logger = LogManager.getLogger();
 		logger.info("AVA_01 - Début du test.");
 		driver.get("http://localhost:8080/libreplan");
 		PageCnx pge = PageFactory.initElements(driver, PageCnx.class);
