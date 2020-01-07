@@ -80,13 +80,19 @@ public class CAL_01_Administration {
 		PageCalendrier.calendrier_derive_titre_tableau.click();
 		assertEquals("Dérivé du calendrier Calendrier - Test 1", PageFormulaireCalendrier.type_calendrier.getText());
 		
-		//Créer un calendrier dérivé - nom non conforme - 06]
+		// [Créer un calendrier dérivé - nom non conforme - 06]
 		OutilTechnique.remplirChampTexte(PageFormulaireCalendrier.champs_calendrier_nom, "Calendrier - Test 1");
+		PageFormulaireCalendrier.btn_sauvegarder_continuer.click();
 		assertEquals("Calendrier - Test 1 existe déjà", PageFormulaireCalendrier.erreur1_calendrier.getText());
+		OutilTechnique.screenShot(driver, "CAL_01_erreur_calendrier");	
 		
+		// [Créer un calendrier dérivé - bouton [Enregistrer et continuer] - 07 ]
 		
-			
-		
+		OutilTechnique.remplirChampTexte(PageFormulaireCalendrier.champs_calendrier_nom, "Calendrier - Test Calendrier Dérivé");
+		PageFormulaireCalendrier.btn_sauvegarder_continuer.click();	
+		assertEquals("Calendrier de base \"Calendrier - Test Calendrier Dérivé\" enregistré", PageFormulaireCalendrier.validation_calendrier.getText());
+		PageFormulaireCalendrier.btn_annuler.click();	
+		OutilTechnique.screenShot(driver, "CAL_01_erreur_calendrier");	
 		
 			
 	

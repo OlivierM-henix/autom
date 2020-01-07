@@ -32,7 +32,11 @@ public class PageFormulaireCalendrier {
 	public
 	WebElement erreur1_calendrier;
 	
+	@FindBy (xpath="//div[@class='message_INFO']//span[text()='Calendrier - Test Calendrier Dérivé']")
+	public
+	WebElement validation_calendrier;
 	
+		
 	
 	public PageCalendrier clicBtnAnnuler(WebDriver driver) {
 		btn_annuler.click();
