@@ -44,8 +44,7 @@ public abstract class PageAbstract {
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+		}		
 
 		WebElement a = driver.findElement(By.xpath("//a[@class='z-menu-item-cnt'][contains(text(),'"+btn+"')]"));		
 		System.out.println("selection de l'onglet : "+ogl);
@@ -55,9 +54,6 @@ public abstract class PageAbstract {
 		WebElement c = driver.findElement(By.xpath("//a[@class='z-menu-item-cnt'][contains(text(),\""+btn+"\")]"));
 		System.out.println("selection du sous-menu : "+btn);
 		c.click();
-
-		//        return PageFactory.initElements(driver, PageAbstract.class);
-
 	} // PAR EXEMPLE : selectionnerMenu(driver,"Ressources","Machines");
 	
 	
