@@ -1,7 +1,5 @@
 package org.autom5;
 
-import static org.junit.Assert.assertFalse;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;

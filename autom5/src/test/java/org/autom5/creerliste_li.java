@@ -59,10 +59,11 @@ WebDriver driver;
 
 
 	@Test	
-	public void creerliste_li() {List <WebElement> we = driver.findElements(By.xpath("//div[@id='aLKAia-header']"));
-	for(WebElement element : li_All) {
-		System.out.println(element.getText());
-	}
+	public creerliste_li() {
+		List<WebElement> allElements = driver.findElements(By.xpath("//div[@id='...']/ul/li")); 
+
+		for (WebElement element: allElements) {
+		      System.out.println(element.getText());
 	}
 	@After	
 	public void fermerNavigateur () {

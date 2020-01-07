@@ -85,9 +85,8 @@ public class FQU_01 extends PageAbstract{
 		//PAS 4
 		OutilTechnique.remplirChampTexte(pageEditerFormulaire.champ_nom, "Formulaire Test 1");
 		OutilTechnique.remplirChampTexte(pageEditerFormulaire.champ_description, "Formulaire Test 1");
-		pageEditerFormulaire.checkbox_avancement.click();
 		assertTrue(select.getFirstSelectedOption().getText().equals("par pourcentage"));
-		assertTrue(pageEditerFormulaire.checkbox_avancement.isSelected());
+		assertFalse(pageEditerFormulaire.checkbox_avancement.isSelected());
 		pageEditerFormulaire.btn_nvelement.click();
 		String xpath_tableau_formulaire =  "//div[@class=\"z-panel-body\"]//div[@class=\"z-grid-body\"]/table";
 		assertTrue(OutilTechnique.obtenir_cellule_i_j(driver, xpath_tableau_formulaire, 1,1).getText().isEmpty());
@@ -111,8 +110,13 @@ public class FQU_01 extends PageAbstract{
 		pageEditerFormulaire.lgn_nom.click();
 		
 		assertTrue(OutilTechnique.obtenir_cellule_i_j(driver, xpath_tableau_formulaire, 1,2).getText().equals("1"));
-		assertTrue(OutilTechnique.obtenir_cellule_i_j(driver, xpath_tableau_formulaire, 2,2).getText().equals("2"));
-		assertTrue(OutilTechnique.obtenir_champ_i_j(driver, xpath_tableau_formulaire, 2,3).getAttribute("value").equals("20,00"));
+		Thread.sleep(1000);
+		assertTrue(driver.findElement(By.xpath(xpath_tableau_formulaire+"/tbody[2]/tr[2]/td[2]//span")).getText().equals("2"));
+		assertTrue(OutilTechnique.obtenir_champ_i_j(driver, xpath_tableau_formulaire, 2,3).getAttribute("value").equals("40,00"));
 		
+		//PAS 7
+		pageEditerFormulaire.btn_sauver_continuer.click();
+		Thread.sleep(5000);
+		assertTrue(driver.findElement(By.xpath("//img[@src=\"/libreplan/common/img/ico_ok.png\"]")).isDisplayed());
 	}
 }
