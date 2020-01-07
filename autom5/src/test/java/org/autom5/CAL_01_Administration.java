@@ -60,9 +60,8 @@ public class CAL_01_Administration {
 		
 		
 		// [Créer un calendrier - Accès au formulaire de création - 03]
-		PageFormulaireCalendrier PageFormulaireCalendrier = PageCalendrier.clicBtnCreer(driver);
-		//Instanciation de la PageFormulaireCalendrier et vérification du contenu		
-		
+		//Instanciation de la PageFormulaireCalendrier et vérification du contenu	
+		PageFormulaireCalendrier PageFormulaireCalendrier = PageCalendrier.clicBtnCreer(driver);		
 		assertTrue("le bouton Enregistrer n'existe pas", PageFormulaireCalendrier.btn_enregistrer.isEnabled());
 		assertTrue("le bouton Sauvegarder et continuer n'existe pas", PageFormulaireCalendrier.btn_sauvegarder_continuer.isEnabled());
 		assertTrue("le bouton Annuler n'existe pas", PageFormulaireCalendrier.btn_annuler.isEnabled());	
@@ -71,8 +70,13 @@ public class CAL_01_Administration {
 		//[	Créer un calendrier - bouton [Enregistrer] - 04]
 				
 		OutilTechnique.remplirChampTexte(PageFormulaireCalendrier.champs_calendrier_nom, "Calendrier - Test 1");		
-		PageFormulaireCalendrier.btn_enregistrer.click();			
-		assertEquals("Calendrier - Test 1", PageCalendrier.calendrier_tableau_test1.getText());
+		PageFormulaireCalendrier.btn_enregistrer.click();	
+		WebElement calendrier_initial = PageCalendrier.SelectionnerCalendrier(driver, "Calendrier - Test 1");	
+		System.out.println(calendrier_initial.toString());		
+		assertEquals("Calendrier - Test 1", calendrier_initial.getText());
+		
+		
+		//assertEquals("Calendrier - Test 1", PageCalendrier.calendrier_tableau_test1.getText());
 		OutilTechnique.screenShot(driver, "CAL_01_tableau_calendrier");	
 		
 		//[	Créer un calendrier - bouton [Enregistrer] - 05]
@@ -80,17 +84,31 @@ public class CAL_01_Administration {
 		PageCalendrier.calendrier_derive_titre_tableau.click();
 		assertEquals("Dérivé du calendrier Calendrier - Test 1", PageFormulaireCalendrier.type_calendrier.getText());
 		
-		//Créer un calendrier dérivé - nom non conforme - 06]
+		// [Créer un calendrier dérivé - nom non conforme - 06]
 		OutilTechnique.remplirChampTexte(PageFormulaireCalendrier.champs_calendrier_nom, "Calendrier - Test 1");
-		assertEquals("Calendrier - Test 1 existe déjà", PageFormulaireCalendrier.erreur1_calendrier.getText());
+		PageFormulaireCalendrier.btn_sauvegarder_continuer.click();
+		assertEquals("Calendrier - Test 1 existe déjà", PageFormulaireCalendrier.erreur_calendrier.getText());
+		OutilTechnique.screenShot(driver, "CAL_01_erreur_calendrier");
+		Thread.sleep(3000);
+				
+		// [Créer un calendrier dérivé - bouton [Enregistrer et continuer] - 07 ]		
 		
+		OutilTechnique.remplirChampTexte(PageFormulaireCalendrier.champs_calendrier_nom, "Calendrier - Test Calendrier Dérivé");
+		PageFormulaireCalendrier.btn_sauvegarder_continuer.click();	
+		assertEquals("Calendrier de base \"Calendrier - Test Calendrier Dérivé\" enregistré", PageFormulaireCalendrier.validation_calendrier.getText());		
+		OutilTechnique.screenShot(driver, "CAL_01_validation_calendrier_derivé");	
 		
-			
+		// [Retour page de gestion des calendriers - 08 ]
 		
+		PageFormulaireCalendrier.btn_annuler.click();
+		Thread.sleep(1000);	
 		
-			
-	
+		WebElement calendrier_id = PageCalendrier.SelectionnerCalendrier(driver, "Calendrier - Test 1");
+		assertTrue("Calendrier - Test 1", PageCalendrier.RetryingGetText(driver, calendrier_id));
+		WebElement calendrier_derive = PageCalendrier.SelectionnerCalendrier(driver, "Calendrier - Test Calendrier Dérivé");		
+		assertEquals("Calendrier - Test Calendrier Dérivé", calendrier_derive.getText());		
 	}
+	
 	//@After
 		//public void fermerNavigateur () {
 		//	driver.quit();

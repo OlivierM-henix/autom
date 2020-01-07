@@ -38,77 +38,50 @@ public class PRO_01_Creation extends PageAbstract {
 
 		//********************* STEP 1 *********************
 		//AccÃ©der Ã  lâ€™application et se connecter en tant que admin/admin
-		driver.get("http://localhost:8090/libreplan/");	
+		driver.get("http://localhost:8081/libreplan/");	
 		PageCnx pageCnx = PageFactory.initElements(driver, PageCnx.class);
-		PageIndex pageIndex = pageCnx.sidentifier("admin", "admin", driver);
+		PageIndex page_index = pageCnx.sidentifier("admin", "admin", driver);
 		Thread.sleep(5000);
 
 		//VÃ©rifier la bonne connexion
-		assertTrue(pageIndex.btn_deconnexion.isEnabled());
-		assertEquals(pageIndex.txt_utilisateurConnecte.getText(),"utilisateur: admin");
-
-		// Se rendre sur la page Ã  tester l'aide de la mÃ©thode selectionnerMenu de la PageAbstract: exemple avec Ressources / Formulaires QualitÃ©
-		// Adapter les noms Ã  votre page !!!
-		//PAS NECESSAIRE DANS LE TEST CALENDRIER CAR ONGLET PAR DEFAUT
-		//pageIndex.selectionnerMenu(driver, "Ressources", "CritÃ¨re");
-		//PageFormulaireQualite pageFormulaireQualite = PageFactory.initElements(driver, PageFormulaireQualite.class);
+		assertTrue(page_index.btn_deconnexion.isEnabled());
+		assertEquals(page_index.txt_utilisateurConnecte.getText(),"utilisateur: admin");
 
 		//PageIndex pageIndex = PageFactory.initElements(driver, PageIndex.class);
-
-
 		//********************* STEP 2 *********************
 		//Accï¿½der au formulaire de crï¿½ation d'un projet
 		//Cliquer sur l'icï¿½ne "Crï¿½er un nouveau projet" (1ï¿½re icï¿½ne "+" situï¿½e en dessous du logo "LibrePlan")
-		driver.findElement(By.xpath("//span[@class='planner-icon z-button']//img")).click();
+		page_index.btn_creerprojet.click();
+		
 		System.out.println("popup affichée");
 		PageCreerProjet pageCreerProjet = PageFactory.initElements(driver, PageCreerProjet.class);
-<<<<<<< HEAD
 		pageCreerProjet.input_nomprojet.sendKeys("PRJTEST001");
-		
-		
-		//OutilTechnique.remplirChampTexte(pageCreerProjet.input_nomprojet, "PRJTEST001");
-		
-=======
-
-
 		OutilTechnique.remplirChampTexte(pageCreerProjet.input_codeprojet, "PRJTEST001");
->>>>>>> 465f361bd5ee5ec36a8562f2b3002365a1097672
 		pageCreerProjet.checkbox_codeprojet.click();
 		assertTrue(pageCreerProjet.checkbox_codeprojet.equals(null));
-
-		//vï¿½rifier que le champ "nom" est prï¿½sent
-		assertEquals("Nom", pageCreerProjet.label_nomprojet.getText());
+		assertEquals("Nom", pageCreerProjet.txt_nomprojet.getText());
 		//log.info 	
-
-<<<<<<< HEAD
 		//vérifier que le champ "nom" du projet est vide par défaut
 		assertTrue(pageCreerProjet.input_nomprojet.getText().isEmpty());
-=======
 		//vï¿½rifier que le champ "nom" du projet est vide par dï¿½faut
-		assertThat(pageCreerProjet.input_nomprojet.getText().isEmpty());
->>>>>>> 465f361bd5ee5ec36a8562f2b3002365a1097672
+		assertTrue(pageCreerProjet.input_nomprojet.getText().isEmpty());
 		// log 			
 		pageCreerProjet.input_nomprojet.sendKeys("PROJET_TEST1");
-
 		//Vï¿½rifier que le champ "modele" est prï¿½sent
-		assertEquals("Modele", pageCreerProjet.label_modeleprojet.getText());	
+		assertEquals("Modèle", pageCreerProjet.txt_modeleprojet.getText());	
 		// log 
-
-<<<<<<< HEAD
 		//vérifier que le log le champ "modele" est vide par défaut 
 		assertTrue(pageCreerProjet.input_modeleprojet.getText().isEmpty());
-
 		// Vérifier que le champ "modele" est une liste deroulante
 		assertTrue(pageCreerProjet.input_modeleprojet.getAttribute("class").contains("bandbox"));
 		//("le champ modele est une bandbox/liste déroulante", PageCreerProjet.input_modeleprojet.getAttribute("class") );	
-=======
+
 		//vï¿½rifier que le log le champ "modele" est vide par dï¿½faut 
-		assertThat(pageCreerProjet.input_modeleprojet.getText().isEmpty());
+		assertTrue(pageCreerProjet.input_modeleprojet.getText().isEmpty());
 
 		// Vï¿½rifier que le champ "modele" est une liste deroulante
-		assertThat(pageCreerProjet.input_modeleprojet.getAttribute("class").contains("bandbox"));
+		assertTrue(pageCreerProjet.input_modeleprojet.getAttribute("class").contains("bandbox"));
 		//("le champ modele est une bandbox/liste dï¿½roulante", PageCreerProjet.input_modeleprojet.getAttribute("class") );	
->>>>>>> 465f361bd5ee5ec36a8562f2b3002365a1097672
 
 		//vï¿½rifier que le label code est prï¿½sent
 		assertEquals("Code", pageCreerProjet.label_codeprojet.getText());
@@ -121,7 +94,7 @@ public class PRO_01_Creation extends PageAbstract {
 		// Vï¿½rifier que label ï¿½chï¿½ance est affichï¿½ (atttention= is displayed)
 		assertEquals("Echeance", pageCreerProjet.label_dateecheance_projet.getText());
 		// log 
-<<<<<<< HEAD
+
 		// Verifier que la date d'éechance du projet est vide par défaut
 		assertTrue(pageCreerProjet.input_dateecheanceprojet.getText().isEmpty());;
 		// log
@@ -129,15 +102,14 @@ public class PRO_01_Creation extends PageAbstract {
 		// log champ client existe
 		assertTrue(pageCreerProjet.input_clientprojet.getText().isEmpty());
 		// champ client vide par défaut
-=======
 		// Verifier que la date d'ï¿½echance du projet est vide par dï¿½faut
-		assertThat(pageCreerProjet.input_dateecheanceprojet).isNull();;
+		assertTrue(pageCreerProjet.input_dateecheanceprojet.getText().isEmpty());
 		// log
 		assertEquals("Client", pageCreerProjet.label_clientprojet.getText());
 		// log champ client existe
-		assertThat(pageCreerProjet.input_clientprojet).isNull();
+		assertTrue(pageCreerProjet.input_clientprojet.getText().isEmpty());
 		// champ client vide par dï¿½faut
->>>>>>> 465f361bd5ee5ec36a8562f2b3002365a1097672
+
 		assertEquals("Calendrier", pageCreerProjet.label_calendrierprojet.getText());
 		// log 	
 		assertEquals("Default", pageCreerProjet.combobox_calendrierprojet.getText());
@@ -153,16 +125,16 @@ public class PRO_01_Creation extends PageAbstract {
 
 		OutilTechnique.remplirChampTexte(pageCreerProjet.input_nomprojet, "PROJET_TEST1");
 		pageCreerProjet.checkbox_codeprojet.click();
-		assertTrue(pageCreerProjet.checkbox_codeprojet.equals(null));
+		//assertTrue(pageCreerProjet.checkbox_codeprojet.getAttribute("checked").gettext());
 		OutilTechnique.remplirChampTexte(pageCreerProjet.input_codeprojet, "PRJTEST001");
 
-<<<<<<< HEAD
+
 		//- Date de début : Sélectionner dans le calendrier date J+5 
 		pageCreerProjet.bouton_datedebutprojet.click();
-=======
+
 		//- Date de dï¿½but : Sï¿½lectionner dans le calendrier date J+5 
 		pageCreerProjet.datedebutprojet.click();
->>>>>>> 465f361bd5ee5ec36a8562f2b3002365a1097672
+
 		//OutilTechnique.formatdate();
 		System.out.println(OutilTechnique.formatdate());
 		CalendarCalcul.getTargetDateMonthAndYear_debutprojet(5);
@@ -178,10 +150,10 @@ public class PRO_01_Creation extends PageAbstract {
 
 		//Le projet est crï¿½ï¿½ : 
 		//- dans le menu vertical ï¿½ gauche de la page -> menu affichï¿½ = "Dï¿½tail du projet" 
-		assertTrue(pageIndex.detailprojet.isDisplayed());
+		assertTrue(page_index.detailprojet.isDisplayed());
 
 		//- dans le menu horizontal -> onglet affichï¿½ = "WBS (tï¿½ches)" 
-		assertTrue(pageIndex.ong_WBStaches.isDisplayed());
+		assertTrue(page_index.ong_WBStaches.isDisplayed());
 
 		//********************* STEP 4 *********************
 		//Vï¿½rifier les onglets - menu vertical : 

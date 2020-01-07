@@ -1,0 +1,12 @@
+2020-01-07 13:36:34 [main] INFO  TestCase:45 - Hello World
+2020-01-07 13:38:24 [main] INFO  TestCase:45 - Test AVA_01 réussi, suppression des données de test
+2020-01-07 13:40:38 [main] ERROR TestCase:47 - ÉCHEC DU TEST AVA_01 !
+2020-01-07 13:48:22 [main] ERROR TestCase:47 - ÉCHEC DU TEST AVA_01 !
+2020-01-07 13:52:32 [main] INFO  TestCase:34 - AVA_01 - Début du test.
+2020-01-07 13:52:36 [main] ERROR TestCase:48 - AVA_01 - ÉCHEC DU TEST !
+2020-01-07 13:56:03 [main] INFO  TestCase:34 - AVA_01 - Début du test.
+2020-01-07 13:56:06 [main] ERROR TestCase:48 - AVA_01 - ÉCHEC DU TEST !
+2020-01-07 13:58:35 [main] INFO  TestCase:34 - AVA_01 - Début du test.
+2020-01-07 13:58:39 [main] ERROR TestCase:48 - AVA_01 - ÉCHEC DU TEST !
+2020-01-07 14:02:25 [main] ERROR error:48 - AVA_01 - ÉCHEC DU TEST !
+2020-01-07 14:03:40 [main] ERROR all:48 - AVA_01 - ÉCHEC DU TEST !
