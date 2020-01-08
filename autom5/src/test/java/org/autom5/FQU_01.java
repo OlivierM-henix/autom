@@ -35,21 +35,21 @@ public class FQU_01 extends PageAbstract{
 		BDDConnexion.deleteAllData("src/test/java/org/autom5/resources/FlatXmlDataSet/nettoyage_quality_form.xml");
 	}
 
-
 	@Test
 	public void test() throws InterruptedException {
 		//PAS 1 Accéder à l’application et se connecter en tant que admin/admin
-		driver.get("http://localhost:8090/libreplan/");	
+		driver.get("http://localhost:8090/libreplan/");
+		
 		PageCnx pageCnx = PageFactory.initElements(driver, PageCnx.class);
 		PageIndex pageIndex = pageCnx.sidentifier("admin", "admin", driver);
-
+		
 		//PAS 1 Vérifier la bonne connexion
 		assertTrue(pageIndex.btn_deconnexion.isEnabled());
 		assertTrue(pageIndex.btn_calendrier.isEnabled());
 		assertEquals(pageIndex.txt_utilisateurConnecte.getText(),"utilisateur: admin");
 		
 		//PAS 2 Se rendre sur la page à tester l'aide de la méthode selectionnerMenu de la PageAbstract: exemple avec Ressources / Formulaires Qualité
-
+		
 		pageIndex.selectionnerMenu(driver, "Ressources", "Formulaires qualité");
 		PageFormulaireQualite pageFormulaireQualite = PageFactory.initElements(driver, PageFormulaireQualite.class);
 	
@@ -83,7 +83,7 @@ public class FQU_01 extends PageAbstract{
 		assertTrue(pageEditerFormulaire.btn_enregistrer.isEnabled());
 		assertTrue(pageEditerFormulaire.btn_sauver_continuer.isEnabled());
 		assertTrue(pageEditerFormulaire.btn_annuler.isEnabled());
-	
+		
 		//PAS 4
 		OutilTechnique.remplirChampTexte(pageEditerFormulaire.champ_nom, "Formulaire Test 1");
 		OutilTechnique.remplirChampTexte(pageEditerFormulaire.champ_description, "Formulaire Test 1");
@@ -95,16 +95,17 @@ public class FQU_01 extends PageAbstract{
 		assertTrue(OutilTechnique.obtenir_cellule_i_j(driver, xpath_tableau_formulaire, 1,2).getText().equals("1"));
 		assertTrue(OutilTechnique.obtenir_cellule_i_j(driver, xpath_tableau_formulaire, 1,3).getText().isEmpty());
 		assertTrue(driver.findElement(By.xpath("//img[@src=\"/libreplan/common/img/ico_subir1.png\"]")).isEnabled());
-		
+
 		//PAS 5
 		OutilTechnique.remplirChampTexte(OutilTechnique.obtenir_champ_i_j(driver, xpath_tableau_formulaire, 1,1),"Formulaire - Element 1");
 		OutilTechnique.remplirChampTexte(OutilTechnique.obtenir_champ_i_j(driver, xpath_tableau_formulaire, 1,3),"20");
 		pageEditerFormulaire.btn_nvelement.click();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 		
 		assertTrue(OutilTechnique.obtenir_cellule_i_j(driver, xpath_tableau_formulaire, 1,2).getText().equals("1"));
 		assertTrue(OutilTechnique.obtenir_cellule_i_j(driver, xpath_tableau_formulaire, 2,2).getText().equals("2"));
 		assertTrue(OutilTechnique.obtenir_champ_i_j(driver, xpath_tableau_formulaire, 2,3).getAttribute("value").equals("20,00"));
+
 		
 		//PAS 6
 		OutilTechnique.remplirChampTexte(OutilTechnique.obtenir_champ_i_j(driver, xpath_tableau_formulaire, 1,1),"Formulaire - Element 2");
@@ -118,7 +119,6 @@ public class FQU_01 extends PageAbstract{
 		
 		//PAS 7
 		pageEditerFormulaire.btn_sauver_continuer.click();
-		Thread.sleep(5000);
 		assertTrue(driver.findElement(By.xpath("//img[@src=\"/libreplan/common/img/ico_ok.png\"]")).isDisplayed());
 	}
 }

@@ -27,6 +27,7 @@ public class canevasTest extends PageAbstract{
 	@After
 	public void fermerNavigateur() throws Exception {
 		driver.quit();
+//		Adapter le nettoyage des BDD :
 		BDDConnexion.deleteAllData("src/test/java/org/autom5/resources/FlatXmlDataSet/nettoyage_quality_form_items.xml");
 		BDDConnexion.deleteAllData("src/test/java/org/autom5/resources/FlatXmlDataSet/nettoyage_quality_form.xml");
 	}
